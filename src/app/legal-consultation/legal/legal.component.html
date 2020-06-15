@@ -1,0 +1,558 @@
+<div class="container">
+  <div class="image-header">
+    <img src="http://www.icloud8.net/cmlc/images/logo.png" alt="" />
+  </div>
+  <form [formGroup]="caseform" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-card class="main">
+      <ng-container *transloco="let t">
+        <mat-card-header>
+          <mat-card-title style="min-height: 40px; margin: 0;"
+            ><mat-icon>dashboard</mat-icon> Legal Consultation Management
+          </mat-card-title>
+          <div class="buttonbar">
+            <div class="buttonbarbg">
+              <button mat-button><mat-icon>cloud_done</mat-icon> Save</button>
+              <button mat-button><mat-icon>done_all</mat-icon> Submit</button>
+              <button mat-button><mat-icon>redo</mat-icon> Reset</button>
+              <button mat-button>
+                <mat-icon>local_printshop</mat-icon> Print
+              </button>
+              <button mat-button>
+                <mat-icon>delete_outline</mat-icon> Delete
+              </button>
+            </div>
+          </div>
+
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px;"
+            fxHide.lt-md
+            class="langgroup"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+          <div class="staticlbl">
+            SECURITY CASE
+          </div>
+          <!-- <button mat-raised-button color="accent" type="submit">
+            <mat-icon>search</mat-icon>
+            <span fxHide.lt-md>{{ t('SEARCH') }}</span>
+          </button> -->
+        </mat-card-header>
+      </ng-container>
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around center"
+        style="text-align: center; margin-bottom: 20px;"
+        fxHide.gt-sm
+      >
+        <div fxFlex="0 0 100%">
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px;"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('PNAME') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('CONTROL_NUMBER') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('APPL_DATE') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('APPL_DIVISION') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LDPD') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="begcontperiod"
+                formControlName="begcontperiod"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="begcontperiod"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #begcontperiod></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('APPLY_F_DEPT') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="applicant" />
+              <mat-error
+                *ngIf="
+                  caseform.get('applicant').errors &&
+                  caseform.get('applicant').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+   
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LDRT') }}*</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="begcontperiod"
+                formControlName="begcontperiod"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="begcontperiod"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #begcontperiod></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('APPLICANT') }}*</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="applicant" />
+              <mat-error
+                *ngIf="
+                  caseform.get('applicant').errors &&
+                  caseform.get('applicant').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+            <div class="button-row">
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                class="gradient-primary"
+              >
+                <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
+              </button>
+              <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                class="gradient-warn"
+              >
+                <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('STATUS') }}*</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <mat-select formControlName="classification">
+                <mat-option value="{{ t('CREATING') }}">{{
+                  t('CREATING')
+                }}</mat-option>
+                <mat-option value="{{ t('CREATING') }}">{{
+                  t('CREATING')
+                }}</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  caseform.get('classification').errors &&
+                  caseform.get('classification').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('PERSON_CONCERN') }}*</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="applicant" />
+              <mat-error
+                *ngIf="
+                  caseform.get('applicant').errors &&
+                  caseform.get('applicant').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+            <div class="button-row">
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                class="gradient-primary"
+              >
+                <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
+              </button>
+              <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                class="gradient-warn"
+              >
+                <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LEGAL_REPRESENTATIVE') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LEGAL_DEPARTMENT_NOTES') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LEGAL_DEPARTMENT_ITEM') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+           
+          
+              <label class="file">
+                <input type="file" id="file" aria-label="File browser example">
+                <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
+                  
+                </span>
+              </label>
+             
+          
+              
+            
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('EXSISTANCE_OF_THE_EXTERNAL_CONSULTANT') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <mat-select formControlName="autoupdate" name="autoupdate">
+                <mat-option value="yes">{{ t('YES') }}</mat-option>
+                <mat-option value="no">{{ t('NO') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('NAMEEXTCONSULT') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder=""
+                formControlName="legel_dept_notes"
+              />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 50%"></div>
+        </div>
+      </ng-container>
+      
+      
+      <mat-tab-group color="accent" backgroundColor="accent" selectedIndex="0" fitInkBarToContent="true">
+        <mat-tab>
+          <ng-template mat-tab-label *transloco="let t">
+            <mat-icon>mail_outline</mat-icon>
+             {{t('MASSEGE_CONTENT')}}
+          </ng-template>
+          <ng-container *transloco="let t">
+            <div
+              fxLayout="row wrap"
+              fxLayout.xs="column"
+              fxLayoutAlign.gt-sm="space-around center"
+            >
+              <div fxFlex="0 0 25%">
+                <label>{{ t('MESSAGE') }}</label>
+              </div>
+              <div fxFlex="0 0 75%">
+                <mat-form-field>
+                  <textarea
+                    matInput
+                    placeholder=""
+                    formControlName="legel_dept_notes"
+                    rows="3"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div
+              fxLayout="row wrap"
+              fxLayout.xs="column"
+              fxLayoutAlign.gt-sm="space-around center"
+            >
+              <div fxFlex="0 0 25%">
+                <label>{{ t('ATTACHMENT') }}</label>
+              </div>
+              <div fxFlex="0 0 35%">
+                <label class="file">
+                  <input type="file" id="file1" aria-label="File browser example">
+                  <mat-icon>cloud_upload</mat-icon><span class="file-custom long" data-lbl="Additional">
+                    
+                  </span>
+                </label>
+              </div>
+              <div fxFlex="0 0 15%">
+                <label>{{ t('RDATE') }}</label>
+              </div>
+              <div fxFlex="0 0 25%">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="recpdate"
+                    formControlName="recpdate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="recpdate"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #recpdate></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            
+              <div
+                fxLayout="row wrap"
+                fxLayout.xs="column"
+                fxLayoutAlign.gt-sm="space-around center"
+              >
+                <div fxFlex="0 0 100%" class="historylbl">
+                  <mat-icon>history</mat-icon><label>{{ t('HISTORY') }}</label>
+                </div>
+              </div>
+              <div
+              fxLayout="row wrap"
+              fxLayout.xs="column"
+              fxLayoutAlign.gt-sm="space-around center"
+            >
+              <div fxFlex="0 0 25%">
+                <label>{{ t('FROM(HISTORY)') }}</label>
+              </div>
+              <div fxFlex="0 0 35%">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder=""
+                    formControlName="legel_dept_notes"
+                  />
+                </mat-form-field>
+              </div>
+              <div fxFlex="0 0 15%">
+                <label>{{ t('STATUS(HISTORY)') }}</label>
+              </div>
+              <div fxFlex="0 0 25%">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder=""
+                    formControlName="legel_dept_notes"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+         
+              <div
+              fxLayout="row wrap"
+              fxLayout.xs="column"
+              fxLayoutAlign.gt-sm="space-around center"
+            >
+              <div fxFlex="0 0 25%">
+                <label>{{ t('SENT_DATE_AND_TIME') }}</label>
+              </div>
+              <div fxFlex="0 0 35%">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder=""
+                    formControlName="legel_dept_notes"
+                  />
+                </mat-form-field>
+              </div>
+              <div fxFlex="0 0 15%">
+                <label>{{ t('STAKEHOLDER(HISTORY)') }}</label>
+              </div>
+              <div fxFlex="0 0 25%">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder=""
+                    formControlName="legel_dept_notes"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div
+            fxLayout="row wrap"
+            fxLayout.xs="column"
+            fxLayoutAlign.gt-sm="space-around center"
+          >
+            <div fxFlex="0 0 25%">
+              <label>{{ t('MESSAGE(HISTORY)') }}</label>
+            </div>
+            <div fxFlex="0 0 75%">
+              <mat-form-field>
+                <textarea
+                  matInput
+                  placeholder=""
+                  formControlName="legel_dept_notes"
+                  rows="3"
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          
+          <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('ATTACHMENTS(HISTORY)') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder=""
+                formControlName="legel_dept_notes"
+              />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 50%" style="text-align: right">
+            <button mat-button color="primary"> <mat-icon>launch</mat-icon> Display The Past Messages</button>
+          </div>
+        </div>
+
+          </ng-container>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </form>
+</div>

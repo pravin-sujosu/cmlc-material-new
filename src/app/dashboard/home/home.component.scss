@@ -1,0 +1,122 @@
+.datatable-container {
+    min-height: 0.01%;
+    overflow-x: auto;
+    height: 405px;
+  }
+  
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+//   table.casetable {
+//     width: 2000px;
+//     max-width: inherit;
+//   }
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+  
+  /* Popover styling */
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .popover__title {
+    font-size: 14px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 100;
+  }
+  
+  .popover__wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -69px;
+    transform: translate(0, 10px);
+    background-color: #fdfdfd;
+    padding: 0.5rem 1rem 0 1rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    min-width: 270px;
+    top: 55px;
+    z-index: 9999;
+  }
+  .popover__content:before {
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    content: '';
+    width: 15px;
+    height: 15px;
+    z-index: 9999;
+    display: inline-block;
+    background: #fff;
+    margin-left: -7px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    border-top: 1px solid rgb(243, 240, 240);
+    border-left: 1px solid rgb(243, 240, 240);
+    transition-duration: 0.3s;
+    transition-property: transform;
+  }
+  .popover__wrapper:hover .popover__content {
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+  }
+  .popover__message {
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+    text-align: left;
+  }
+  .iconfix {
+    top: 4px;
+    position: relative;
+    left: 5px;
+    color: #00479d;
+  }
+  .popover__content p {
+    margin-bottom: 0px;
+  }
+  .incerror {
+    font-size: 75%;
+    color: #f44336 !important;
+    font-weight: 400;
+  }
+  .mat-header-cell {
+      text-align: left !important;
+  }
+
+  .mat-standard-chip {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    min-height: 32px;
+    height: 1px;
+}
+
+.example-button-row{
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
+}
+
+.example-button-row .mat-button{
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
