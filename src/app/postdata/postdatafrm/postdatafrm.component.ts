@@ -15,7 +15,7 @@ import {
   FormGroup,
   FormControl,
   AbstractControl,
-  Validators, FormBuilder, FormArray
+  Validators,
 } from '@angular/forms';
 import {
   MomentDateAdapter,
@@ -44,11 +44,10 @@ export const MY_FORMATS = {
   },
 };
 
-
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+  selector: 'app-postdatafrm',
+  templateUrl: './postdatafrm.component.html',
+  styleUrls: ['./postdatafrm.component.scss'],
   providers: [
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
@@ -62,14 +61,8 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
-export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
-  panelOpenState = false;
+export class Postdatafrm implements OnInit, AfterViewInit, OnDestroy {
   caseform: FormGroup;
-  contractcontentform: FormGroup;
-  showdeletebtn = false;
-  // validationMsgs = {
-  //   'emailAddress': [{ type: 'email', message: 'Enter a valid email' }]
-  // }
   // MatPaginator Inputs
   //  length = 11;
   //  pageSize = 5;
@@ -107,7 +100,6 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
-    private formBuilder: FormBuilder,
     private transloco: TranslocoService
   ) {}
 
@@ -116,67 +108,12 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   //     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   //   }
   // }
-   //contract content form elements
-   private createContractContentFormGroup(): FormGroup {
-    return new FormGroup({
-      new_renew: new FormControl(''),
-      contracttype: new FormControl(''),
-      contractname: new FormControl(''),
-      contracteditem: new FormControl(''),
-      contractor: new FormControl(''),
-      begcontperiod: new FormControl(''),
-      endcontperiod: new FormControl(''),
-      autoupdate2: new FormControl(''),
-      alertreleasedate: new FormControl(''),
-      relatecontract: new FormControl(''),
-      externalconsultant: new FormControl(''),
-      contractattached: new FormControl(''),
-      country_us: new FormControl(''),
-      country_china: new FormControl(''),
-      country_korea: new FormControl(''),
-      country_europe: new FormControl(''),
-      country_tiwan: new FormControl(''),
-      country_india: new FormControl(''),
-      country_others: new FormControl(''),
-    })
-  }
   setActiveLang(lang: string) {
     this.transloco.setActiveLang(lang);
   }
-
-  public addContractContentFormGroup() {
-    const arrayofelements = this.contractcontentform.get('elementArray') as FormArray;
-    arrayofelements.push(this.createContractContentFormGroup());
-    if(arrayofelements.controls.length > 1) {
-      this.showdeletebtn = true;
-    } else {
-      this.showdeletebtn = false;
-    }
-  }
-
-  public removeOrClearContractContent(i: number) {
-   
-    const arrayofelements = this.contractcontentform.get('elementArray') as FormArray
-    if (arrayofelements.length > 1) {
-      arrayofelements.removeAt(i)
-    } else {
-      arrayofelements.reset()
-    }
-    if(arrayofelements.controls.length > 1) {
-      this.showdeletebtn = true;
-    } else {
-      this.showdeletebtn = false;
-    }
-  }
-
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;
-    //contract content
-    this.contractcontentform = this.formBuilder.group({
-      elementArray: this.formBuilder.array([this.createContractContentFormGroup()])
-    });
 
-    // end contract content
     this.dataSource.paginator = this.paginator;
     this.caseform = new FormGroup({
       classification: new FormControl('', Validators.required),
@@ -223,9 +160,6 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('-----');
     });
   }
-
-
-
   show_inc_app_sec(event: MatCheckboxChange): void {
     console.log(event.checked);
     if (
@@ -237,7 +171,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       this.inc_app_sec_member_error = true;
     }
   }
-  onSubmit1() {
+  onSubmit() {
     if (
       !!this.caseform.value.inc_app_sec_memberno === true ||
       !!this.caseform.value.inc_app_sec_memberyes === true
@@ -250,10 +184,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     // console.log("aa",!!this.caseform.value.inc_app_sec_memberno);
     // console.log("bb",!!this.caseform.value.inc_app_sec_memberyes);
   }
-  onSubmit2() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.contractcontentform.value);
-  }
+
   dateValidator(c: AbstractControl): { [key: string]: boolean } {
     let value = c.value;
     if (value && typeof value === 'string') {

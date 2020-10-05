@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="image-header">
+    <img src="http://www.icloud8.net/cmlc/images/logo.png" alt="" />
+  </div>
+  <form [formGroup]="caseform" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-card class="main">
+      <ng-container *transloco="let t">
+        <mat-card-header>
+          <mat-card-title style="min-height: 40px; margin: 0;"
+            ><mat-icon>dashboard</mat-icon>Import Case Information Data 
+          </mat-card-title>
+          <div class="buttonbar">
+            <div class="buttonbarbg">
+              <button mat-button> Capture</button>
+             
+            </div>
+          </div>
+
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px; position: absolute; right: 32px;"
+            fxHide.lt-md
+            class="langgroup"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+            
+          <!-- <button mat-raised-button color="accent" type="submit">
+            <mat-icon>search</mat-icon>
+            <span fxHide.lt-md>{{ t('SEARCH') }}</span>
+          </button> -->
+        </mat-card-header>
+      </ng-container>
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around center"
+        style="text-align: center; margin-bottom: 20px;"
+        fxHide.gt-sm
+      >
+        <div fxFlex="0 0 100%">
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px;"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+     
+      
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('LEGAL_DEPARTMENT_ITEM') }}</label>
+          </div>
+          <div fxFlex="0 0 75%">
+           
+          
+              <label class="file">
+                <input type="file" id="file" aria-label="File browser example">
+                <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
+                  
+                </span>
+              </label>
+             
+          
+              
+            
+          </div>
+        
+        </div>
+      </ng-container>
+   
+      
+      
+ 
+    </mat-card>
+  </form>
+</div>

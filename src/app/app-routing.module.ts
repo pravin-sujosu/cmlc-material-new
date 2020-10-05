@@ -37,6 +37,13 @@ const routes: Routes = [
         (m) => m.ContactManagementModule
       ),
   },
+  {
+    path: 'postdata',
+    loadChildren: () =>
+      import('./postdata/postdata.module').then(
+        (m) => m.PostdataModule
+      ),
+  },
 ];
 
 @NgModule({

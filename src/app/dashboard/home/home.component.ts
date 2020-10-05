@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
       case 'contactmgmt':
         this.router.navigateByUrl('/contact-management');
         break;
+      case 'postdata':
+        this.router.navigateByUrl('/postdata');
+        break;
+        
       default:
         break;
     }

@@ -1,0 +1,223 @@
+.datatable-container {
+  min-height: 0.01%;
+  overflow-x: auto;
+  height: 405px;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+table.casetable {
+  width: 2000px;
+  max-width: inherit;
+}
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+  font-size: 14px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 100;
+}
+
+.popover__wrapper {
+  position: relative;
+  display: inline-block;
+}
+.popover__content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: -69px;
+  transform: translate(0, 10px);
+  background-color: #fdfdfd;
+  padding: 0.5rem 1rem 0 1rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  min-width: 270px;
+  top: 55px;
+  z-index: 9999;
+}
+.popover__content:before {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  z-index: 9999;
+  display: inline-block;
+  background: #fff;
+  margin-left: -7px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  border-top: 1px solid rgb(243, 240, 240);
+  border-left: 1px solid rgb(243, 240, 240);
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+.popover__wrapper:hover .popover__content {
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -20px);
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
+  text-align: left;
+}
+.iconfix {
+  top: 4px;
+  position: relative;
+  left: 5px;
+  color: #00479d;
+}
+.popover__content p {
+  margin-bottom: 0px;
+}
+.incerror {
+  font-size: 75%;
+  color: #f44336 !important;
+  font-weight: 400;
+}
+
+.buttonbar {
+  display: flex;
+  padding: 0 2rem;
+  height: 40px;
+}
+
+.buttonbar .mat-button {
+  padding: 0 15px;
+  font-weight: 400;
+}
+.buttonbar .buttonbarbg {
+  background: rgba(255,255,255, 0.1);
+  border-radius: 3px;
+}
+.staticlbl {
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+}
+// file upload
+.file {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 14rem;
+}
+.file input {
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  width: 10rem;
+}
+.file > .mat-icon {
+  z-index: 999;
+  color: #fff;
+  position: relative;
+  left: -6px;
+  line-height: 1.6em;
+}
+.file-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: #555;
+  background-color: #fff;
+  border-bottom: 0.075rem solid #949494;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.file-custom.long {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: #555;
+  background-color: #fff;
+  border-bottom: 0.075rem solid #949494;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 270px;
+}
+.file-custom.long:before {
+  position: absolute;
+  top: -0.075rem;
+  right: -0.075rem;
+  bottom: -0.075rem;
+  z-index: 6;
+  display: flex;
+  content: attr(data-lbl);
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  line-height: 1.8em;
+  color: #ffffff;
+  background: linear-gradient(60deg, #0b90a0, #2aadbd);
+  border-radius: 0 0.25rem 0.25rem 0;
+  font-weight: 500;
+  font-size: 14px;
+  width: 124px;
+  justify-content: flex-end;
+}
+.file-custom:before {
+  position: absolute;
+  top: -0.075rem;
+  right: -0.075rem;
+  bottom: -0.075rem;
+  z-index: 6;
+  display: flex;
+  content: attr(data-lbl);
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  line-height: 1.8em;
+  color: #ffffff;
+  background: linear-gradient(60deg, #0b90a0, #2aadbd);
+  border-radius: 0 0.25rem 0.25rem 0;
+  font-weight: 500;
+  font-size: 14px;
+  width: 78px;
+  justify-content: flex-end;
+}
+.file-custom:after {
+  content: "Choose file...";
+}
+//-- file upload
+.historylbl {
+  background-color: #ff4081;
+    font-size: 15px;
+    padding: 10px 15px 4px 30px;
+    font-weight: 500;
+    color: #fbfbfb;
+    margin-top: 10px;
+    display: flex;
+    line-height: 24px;
+}
