@@ -168,7 +168,9 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showdeletebtn = false;
     }
   }
-
+  setStep (aa) {
+    
+  }
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;
     //contract content

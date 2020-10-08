@@ -7,7 +7,7 @@
         <ng-container *transloco="let t">
           <mat-card-header>
             <mat-card-title style="min-height: 40px; margin: 0;"
-              ><mat-icon>dashboard</mat-icon> Access Log List
+              ><mat-icon>dashboard</mat-icon> {{ t('ACCESS_LOG_LIST') }}
             </mat-card-title>
             <mat-button-toggle-group
               name="fontStyle"
@@ -206,7 +206,9 @@
         </ng-container>
         <mat-card class="dataset">
           <div class="card-icon">
-            Access Log List
+            <ng-container *transloco="let t">
+              {{ t('ACCESS_LOG_LIST') }}
+            </ng-container>
           </div>
           <ng-container *transloco="let t">
             <div

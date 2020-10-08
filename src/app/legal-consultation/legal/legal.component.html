@@ -7,18 +7,18 @@
       <ng-container *transloco="let t">
         <mat-card-header>
           <mat-card-title style="min-height: 40px; margin: 0;"
-            ><mat-icon>dashboard</mat-icon> Legal Consultation Management
+            ><mat-icon>dashboard</mat-icon> {{ t('Legal_C_M')}}
           </mat-card-title>
           <div class="buttonbar">
             <div class="buttonbarbg">
-              <button mat-button><mat-icon>cloud_done</mat-icon> Save</button>
-              <button mat-button><mat-icon>done_all</mat-icon> Submit</button>
-              <button mat-button><mat-icon>redo</mat-icon> Reset</button>
+              <button mat-button><mat-icon>cloud_done</mat-icon> {{ t('SAVE') }}</button>
+              <button mat-button><mat-icon>done_all</mat-icon> {{ t('SUBMIT') }}</button>
+              <button mat-button><mat-icon>redo</mat-icon> {{ t('RESET') }}</button>
               <button mat-button>
-                <mat-icon>local_printshop</mat-icon> Print
+                <mat-icon>local_printshop</mat-icon> {{ t('PRINT') }}
               </button>
               <button mat-button>
-                <mat-icon>delete_outline</mat-icon> Delete
+                <mat-icon>delete_outline</mat-icon> {{ t('DELETE') }}
               </button>
             </div>
           </div>
@@ -326,7 +326,7 @@
           
               <label class="file">
                 <input type="file" id="file" aria-label="File browser example">
-                <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
+                <mat-icon>cloud_upload</mat-icon><span class="file-custom"  [attr.data-lbl]="'ADD' | transloco">
                   
                 </span>
               </label>
@@ -367,11 +367,74 @@
             </mat-form-field>
           </div>
 
-          <div fxFlex="0 0 50%"></div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('NEW_RENEWAL') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <mat-select formControlName="new_renew" name="new_renew">
+                <mat-option value="new">{{ t('NEW') }}</mat-option>
+                <mat-option value="renewal">{{ t('RENEWAL') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </ng-container>
       
-      
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around start"
+          style="margin-top: 20px;"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('RELATED_COUNTRIES') }} </label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-checkbox class="country-margin" formControlName="country_us">{{
+              t('US')
+            }}</mat-checkbox>
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_china"
+              >{{ t('CHINA') }}</mat-checkbox
+            ><br />
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_korea"
+              >{{ t('KOREA') }}</mat-checkbox
+            >
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_europe"
+              >{{ t('EUROPE') }}</mat-checkbox
+            >
+          </div>
+
+          <div fxFlex="0 0 50%">
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_tiwan"
+              >{{ t('TAIWAN') }}</mat-checkbox
+            >
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_india"
+              >{{ t('INDIA') }}</mat-checkbox
+            ><br />
+            <mat-checkbox
+            class="country-margin"
+            formControlName="country_india"
+            >{{ t('JAPAN') }}</mat-checkbox>
+            <mat-checkbox
+              class="country-margin"
+              formControlName="country_others"
+              >{{ t('OTHERS') }}</mat-checkbox
+            ><br />
+          </div>
+        </div>
+      </ng-container>
       <mat-tab-group color="accent" backgroundColor="accent" selectedIndex="0" fitInkBarToContent="true">
         <mat-tab>
           <ng-template mat-tab-label *transloco="let t">
@@ -410,7 +473,7 @@
               <div fxFlex="0 0 35%">
                 <label class="file">
                   <input type="file" id="file1" aria-label="File browser example">
-                  <mat-icon>cloud_upload</mat-icon><span class="file-custom long" data-lbl="Additional">
+                  <mat-icon>cloud_upload</mat-icon><span class="file-custom long" [attr.data-lbl]="'ADDTIONAL' | transloco">
                     
                   </span>
                 </label>
@@ -546,7 +609,10 @@
           </div>
 
           <div fxFlex="0 0 50%" style="text-align: right">
-            <button mat-button color="primary"> <mat-icon>launch</mat-icon> Display The Past Messages</button>
+            <button mat-button color="primary"> <mat-icon>launch</mat-icon> 
+              
+              {{ t('DPMSG') }}
+            </button>
           </div>
         </div>
 

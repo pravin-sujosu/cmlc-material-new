@@ -8,23 +8,22 @@
         <ng-container *transloco="let t">
           <mat-card-header>
             <mat-card-title style="min-height: 40px; margin: 0;"
-              ><mat-icon>dashboard</mat-icon> Contract Management
+              ><mat-icon>dashboard</mat-icon> {{t('C_MGMT') }}
             </mat-card-title>
             <div class="buttonbar">
               <div class="buttonbarbg">
-                <button mat-button><mat-icon>cloud_done</mat-icon> Save</button>
-                <button mat-button><mat-icon>done_all</mat-icon> Submit</button>
-                <button mat-button><mat-icon>redo</mat-icon> Reset</button>
+                <button mat-button><mat-icon>cloud_done</mat-icon> {{ t('SAVE')}}</button>
+                <button mat-button><mat-icon>done_all</mat-icon> {{ t('SUBMIT')}}</button>
+                <button mat-button><mat-icon>redo</mat-icon> {{ t('RESET')}}</button>
                 <button mat-button>
-                  <mat-icon>local_printshop</mat-icon> Print
+                  <mat-icon>local_printshop</mat-icon> {{ t('PRINT')}}
                 </button>
                 <button mat-button>
-                  <mat-icon>delete_outline</mat-icon> Delete
+                  <mat-icon>delete_outline</mat-icon> {{ t('DELETE')}}
                 </button>
                 <button mat-button>
-                    <mat-icon>settings_applications</mat-icon> Application
-                  </button>
-                
+                    <mat-icon>settings_applications</mat-icon> {{ t('APPLICATION')}}
+                  </button>               
               </div>
             </div>
   
@@ -346,9 +345,9 @@
           <div fxFlex="0 0 25%">
               <label class="file">
                 <input type="file" id="file" aria-label="File browser example">
-                <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
+                <mat-icon>cloud_upload</mat-icon><span class="file-custom" [attr.data-lbl]="'ADD' | transloco">
                   </span>
-              </label>
+              </label> 
           </div>
           </div>
         </ng-container>
@@ -387,13 +386,10 @@
               <label>{{ t('NAMEEXTCONSULT') }}</label>
             </div>
             <div fxFlex="0 0 25%">
-                <mat-form-field>
-                    <mat-select formControlName="autoupdate" name="autoupdate">
-                      <mat-option value="yes">{{ t('SELECT_ONE') }}</mat-option>
-                      <mat-option value="no">{{ t('SELECT_ONE') }}</mat-option>
-                      <mat-option value="no">{{ t('SELECT_ONE') }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="" formControlName="autoupdate" />
+              </mat-form-field>
+                
             </div>
   
             <div fxFlex="0 0 50%"></div>
@@ -410,7 +406,7 @@
                     </ng-template>
                   <ng-container *transloco="let t">
                     <div class="addnewbtn">
-                      <button mat-raised-button color="accent" (click)="addContractContentFormGroup()">Add  <mat-icon>add</mat-icon></button>
+                      <button mat-raised-button color="accent" (click)="addContractContentFormGroup()">{{t('ADD')}}  <mat-icon>add</mat-icon></button>
                     </div>
                     <form [formGroup]="contractcontentform" autocomplete="off" (ngSubmit)="onSubmit2()" >
                       <div formArrayName="elementArray" style="overflow:hidden">
@@ -430,7 +426,7 @@
                                 </div>
                               <div fxFlex="0 0 50%" fxLayoutAlign="end center">
                                 <ng-template [ngIf]="showdeletebtn">
-                                  <button mat-raised-button color="warn" (click)="removeOrClearContractContent(i);"><mat-icon>delete_forever</mat-icon>Delete</button>
+                                  <button mat-raised-button color="warn" (click)="removeOrClearContractContent(i);"><mat-icon>delete_forever</mat-icon>{{ t('DELETE') }}</button>
                                 </ng-template>
                                   
                                 </div> 
@@ -634,7 +630,7 @@
                       <div fxFlex="0 0 25%">
                           <label class="file">
                             <input type="file" id="file" aria-label="File browser example" formControlName="contractattached">
-                            <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
+                            <mat-icon>cloud_upload</mat-icon><span class="file-custom" [attr.data-lbl]="'ADD' | transloco">
                               </span>
                           </label>
                       </div>
@@ -649,23 +645,23 @@
                 <label>{{ t('RELATED_COUNTRIES') }} </label>
               </div>
               <div fxFlex="0 0 25%">
-                <mat-checkbox class="country-margin" formControlName="country_us">{{
-                  t('US')
+                <mat-checkbox class="country-margin" formControlName="country_korea">{{
+                  t('JAPAN')
                 }}</mat-checkbox>
                 <mat-checkbox
                   class="country-margin"
                   formControlName="country_china"
-                  >{{ t('CHINA') }}</mat-checkbox
+                  >{{ t('US') }}</mat-checkbox
                 ><br />
                 <mat-checkbox
                   class="country-margin"
                   formControlName="country_korea"
-                  >{{ t('KOREA') }}</mat-checkbox
+                  >{{ t('CHINA') }}</mat-checkbox
                 >
                 <mat-checkbox
                   class="country-margin"
                   formControlName="country_europe"
-                  >{{ t('EUROPE') }}</mat-checkbox
+                  >{{ t('TAIWAN') }}</mat-checkbox
                 >
               </div>
 
@@ -673,12 +669,12 @@
                 <mat-checkbox
                   class="country-margin"
                   formControlName="country_tiwan"
-                  >{{ t('TAIWAN') }}</mat-checkbox
+                  >{{ t('INDIA') }}</mat-checkbox
                 >
                 <mat-checkbox
                   class="country-margin"
                   formControlName="country_india"
-                  >{{ t('INDIA') }}</mat-checkbox
+                  >{{ t('EUROPE') }}</mat-checkbox
                 ><br />
                 <mat-checkbox
                   class="country-margin"
@@ -736,7 +732,7 @@
                               <div fxFlex="0 0 35%">
                                 <label class="file">
                                   <input type="file" id="file1" aria-label="File browser example">
-                                  <mat-icon>cloud_upload</mat-icon><span class="file-custom long" data-lbl="Additional">
+                                  <mat-icon>cloud_upload</mat-icon><span class="file-custom long" [attr.data-lbl]="'ADDTIONAL' | transloco">
                                     
                                   </span>
                                 </label>
@@ -872,7 +868,7 @@
                           </div>
                 
                           <div fxFlex="0 0 50%" style="text-align: right">
-                            <button mat-button color="primary"> <mat-icon>launch</mat-icon> Display The Past Messages</button>
+                            <button mat-button color="primary"> <mat-icon>launch</mat-icon> {{t('DPMSG')}}</button>
                           </div>
                         </div>
                 

@@ -109,5 +109,12 @@
   "BRANCH_NUMBER": "Branch Number",
   "REMARKS": "Remarks",
   "SEC_CASE_CLASSIF": "Security Case Classification",
-  "CSV_CREATE": "CSV Creation"
+  "CSV_CREATE": "CSV Creation",
+  "IMPORT_CASE_INFO_DATA":"Import Case Information Data",
+  "CAPTURE":"Capture",
+  "FILE_SPECIFIC":"File Specification",
+  "LEGAL_BOTH":"Both",
+  "ACCESS_LOG_LIST": "Access Log List",
+  "OTHER_PARTY" : "Other Party",
+  "EXP_DATE_CONC": "Expected Date for Conclusion"
 }

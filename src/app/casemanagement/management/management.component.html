@@ -70,6 +70,9 @@
                 <mat-option value="{{ t('Legal_C_M') }}">{{
                   t('Legal_C_M')
                 }}</mat-option>
+                <mat-option value="{{ t('LEGAL_BOTH') }}">{{
+                  t('LEGAL_BOTH')
+                }}</mat-option>
               </mat-select>
               <mat-error
                 *ngIf="
@@ -456,9 +459,87 @@
             </mat-form-field>
           </div>
 
-          <div fxFlex="0 0 50%"></div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('PNAME') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input matInput placeholder="" />
+            </mat-form-field>
+          </div>
         </div>
       </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('EXP_DATE_CONC') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate1"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 25%">
+            <label>{{ t('ALERT_RELEASE_DATE') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate2"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate2"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate2></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+    </ng-container>
+    <ng-container *transloco="let t">
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around center"
+      >
+        <div fxFlex="0 0 25%">
+          <label>{{ t('APPROVAL_DECISION_NUMBER') }}</label>
+        </div>
+        <div fxFlex="0 0 25%">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder=""
+              formControlName="legel_dept_notes"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="0 0 25%">
+          <label>{{ t('BRANCH_NUMBER') }}</label>
+        </div>
+        <div fxFlex="0 0 25%">
+          <mat-form-field>
+            <input matInput placeholder="" />
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
       <ng-container *transloco="let t">
         <div
           fxLayout="row wrap"
@@ -513,53 +594,53 @@
       </ng-container>
       <ng-container *transloco="let t">
         <div
-          fxLayout="row wrap"
-          fxLayout.xs="column"
-          fxLayoutAlign.gt-sm="space-around start"
-          style="margin-top: 20px;"
-        >
-          <div fxFlex="0 0 25%">
-            <label>{{ t('RELATED_COUNTRIES') }} </label>
-          </div>
-          <div fxFlex="0 0 25%">
-            <mat-checkbox class="country-margin" formControlName="country_us">{{
-              t('US')
-            }}</mat-checkbox>
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_china"
-              >{{ t('CHINA') }}</mat-checkbox
-            ><br />
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_korea"
-              >{{ t('KOREA') }}</mat-checkbox
-            >
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_europe"
-              >{{ t('EUROPE') }}</mat-checkbox
-            >
-          </div>
-
-          <div fxFlex="0 0 50%">
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_tiwan"
-              >{{ t('TAIWAN') }}</mat-checkbox
-            >
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_india"
-              >{{ t('INDIA') }}</mat-checkbox
-            ><br />
-            <mat-checkbox
-              class="country-margin"
-              formControlName="country_others"
-              >{{ t('OTHERS') }}</mat-checkbox
-            ><br />
-          </div>
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around start"
+        style="margin-top: 20px;"
+      >
+        <div fxFlex="0 0 25%">
+          <label>{{ t('RELATED_COUNTRIES') }} </label>
         </div>
+        <div fxFlex="0 0 25%">
+          <mat-checkbox class="country-margin" formControlName="country_korea">{{
+            t('JAPAN')
+          }}</mat-checkbox>
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_china"
+            >{{ t('US') }}</mat-checkbox
+          ><br />
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_korea"
+            >{{ t('CHINA') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_europe"
+            >{{ t('TAIWAN') }}</mat-checkbox
+          >
+        </div>
+
+        <div fxFlex="0 0 50%">
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_tiwan"
+            >{{ t('INDIA') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_india"
+            >{{ t('EUROPE') }}</mat-checkbox
+          ><br />
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_others"
+            >{{ t('OTHERS') }}</mat-checkbox
+          ><br />
+        </div>
+      </div>
       </ng-container>
       <ng-container *transloco="let t">
         <div

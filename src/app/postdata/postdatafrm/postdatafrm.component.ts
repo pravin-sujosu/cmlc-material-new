@@ -180,9 +180,6 @@ export class Postdatafrm implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.inc_app_sec_member_error = true;
     }
-    console.log(this.caseform);
-    // console.log("aa",!!this.caseform.value.inc_app_sec_memberno);
-    // console.log("bb",!!this.caseform.value.inc_app_sec_memberyes);
   }
 
   dateValidator(c: AbstractControl): { [key: string]: boolean } {

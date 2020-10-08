@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="image-header">
     <img src="http://www.icloud8.net/cmlc/images/logo.png" alt="" />
@@ -7,15 +8,15 @@
       <ng-container *transloco="let t">
         <mat-card-header>
           <mat-card-title style="min-height: 40px; margin: 0;"
-            ><mat-icon>dashboard</mat-icon>Import Case Information Data 
+            ><mat-icon>dashboard</mat-icon>
+             {{ t('IMPORT_CASE_INFO_DATA') }}
           </mat-card-title>
           <div class="buttonbar">
             <div class="buttonbarbg">
-              <button mat-button> Capture</button>
+              <button mat-button> {{ t('CAPTURE') }}</button>
              
             </div>
           </div>
-
           <mat-button-toggle-group
             name="fontStyle"
             aria-label="Font Style"
@@ -30,11 +31,6 @@
               >JP</mat-button-toggle
             >
           </mat-button-toggle-group>
-            
-          <!-- <button mat-raised-button color="accent" type="submit">
-            <mat-icon>search</mat-icon>
-            <span fxHide.lt-md>{{ t('SEARCH') }}</span>
-          </button> -->
         </mat-card-header>
       </ng-container>
       <div
@@ -58,10 +54,7 @@
             >
           </mat-button-toggle-group>
         </div>
-      </div>
-
-     
-      
+      </div>    
       <ng-container *transloco="let t">
         <div
           fxLayout="row wrap"
@@ -69,29 +62,17 @@
           fxLayoutAlign.gt-sm="space-around center"
         >
           <div fxFlex="0 0 25%">
-            <label>{{ t('LEGAL_DEPARTMENT_ITEM') }}</label>
+            <label>{{ t('FILE_SPECIFIC') }}*</label>
           </div>
           <div fxFlex="0 0 75%">
-           
-          
               <label class="file">
-                <input type="file" id="file" aria-label="File browser example">
-                <mat-icon>cloud_upload</mat-icon><span class="file-custom" data-lbl="Add">
-                  
+                <input type="file" id="file" aria-label="File browser">
+                <mat-icon>cloud_upload</mat-icon><span class="file-custom" [attr.data-lbl]="'ADD' | transloco">
                 </span>
               </label>
-             
-          
-              
-            
-          </div>
-        
+          </div>       
         </div>
       </ng-container>
-   
-      
-      
- 
     </mat-card>
   </form>
 </div>
