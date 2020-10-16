@@ -408,288 +408,272 @@
                     <div class="addnewbtn">
                       <button mat-raised-button color="accent" (click)="addContractContentFormGroup()">{{t('ADD')}}  <mat-icon>add</mat-icon></button>
                     </div>
-                    <form [formGroup]="contractcontentform" autocomplete="off" (ngSubmit)="onSubmit2()" >
-                      <div formArrayName="elementArray" style="overflow:hidden">
-                        <div class="row" *ngFor="let element of contractcontentform.get('elementArray').controls; let i = index"  [formGroupName]="i">
-                    <mat-accordion>
-                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <div
-                                    fxLayout="row"
-                                    fxLayout.xs="column"
-                                    fxLayoutAlign.gt-sm="space-around center"
-                                    fxFill
-                                >
-                                <div fxFlex="0 0 50%">
-                                <label class="exppanelbadge">{{i+1}} </label>
-                                </div>
-                              <div fxFlex="0 0 50%" fxLayoutAlign="end center">
-                                <ng-template [ngIf]="showdeletebtn">
+                   
+                      <form [formGroup]="contractcontentform" autocomplete="off" (ngSubmit)="onSubmit2()" >
+                        <mat-tab-group [selectedIndex]="seltab" formArrayName="elementArray" style="overflow:hidden">
+           
+                           
+                            <mat-tab label=" {{i+1}}" *ngFor="let element of contractcontentform.get('elementArray').controls; let i = index"  [formGroupName]="i">
+                              <ng-template [ngIf]="showdeletebtn">
+                                <div style="text-align: right;margin-top: 20px;">
                                   <button mat-raised-button color="warn" (click)="removeOrClearContractContent(i);"><mat-icon>delete_forever</mat-icon>{{ t('DELETE') }}</button>
-                                </ng-template>
-                                  
-                                </div> 
+                                </div>
+                              </ng-template>
+                              <div
+                              fxLayout="row wrap"
+                              fxLayout.xs="column"
+                              fxLayoutAlign.gt-sm="space-around center"
+                            >
+                              <div fxFlex="0 25%">
+                                <label>{{ t('NEW_RENEWAL') }}*</label>
+                              </div>
+                              <div fxFlex="0 0 25%">
+                                  <mat-form-field>
+                                      <mat-select formControlName="new_renew">
+                                        <mat-option value="yes">{{ t('NEW') }}</mat-option>
+                                        <mat-option value="no">{{ t('RENEWAL') }}</mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                                  <!-- <mat-error
+                          *ngIf="
+                          contractcontentform.get('autoupdate2').errors &&
+                            contractcontentform.get('autoupdate2').errors.required
+                          "
+                          >Please fill up the field</mat-error -->
+                        
+                              </div>
+                        
+                              <div fxFlex="0 0 25%">
+                                <label>{{ t('CONTRACT_TYPE') }}*</label>
+                              </div>
+                              <div fxFlex="0 0 25%">
+                                  <mat-form-field>
+                                      <mat-select formControlName="contracttype" name="contracttype">
+                                        <mat-option value="yes">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
+                                        <mat-option value="no">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
+                                        <mat-option value="no">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                              </div>
                             </div>
-                              
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-                      <!-- tabform start -->
-                          <div
-                          fxLayout="row wrap"
-                          fxLayout.xs="column"
-                          fxLayoutAlign.gt-sm="space-around center"
-                        >
-                          <div fxFlex="0 0 25%">
-                            <label>{{ t('NEW_RENEWAL') }}*</label>
-                          </div>
-                          <div fxFlex="0 0 25%">
-                              <mat-form-field>
-                                  <mat-select formControlName="new_renew">
-                                    <mat-option value="yes">{{ t('NEW') }}</mat-option>
-                                    <mat-option value="no">{{ t('RENEWAL') }}</mat-option>
-                                  </mat-select>
-                              </mat-form-field>
-                              <!-- <mat-error
-                      *ngIf="
-                      contractcontentform.get('autoupdate2').errors &&
-                        contractcontentform.get('autoupdate2').errors.required
-                      "
-                      >Please fill up the field</mat-error -->
-                  
-                          </div>
-                
-                          <div fxFlex="0 0 25%">
-                            <label>{{ t('CONTRACT_TYPE') }}*</label>
-                          </div>
-                          <div fxFlex="0 0 25%">
-                              <mat-form-field>
-                                  <mat-select formControlName="contracttype" name="contracttype">
-                                    <mat-option value="yes">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
-                                    <mat-option value="no">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
-                                    <mat-option value="no">{{ t('NON_DISCLOSURE_AGREEMENT') }}</mat-option>
-                                  </mat-select>
+                            <div
+                                fxLayout="row wrap"
+                                fxLayout.xs="column"
+                                fxLayoutAlign.gt-sm="space-around center"
+                            >
+                                <div fxFlex="0 0 25%">
+                                <label>{{ t('CONTRACT_NAME') }}</label>
+                                </div>
+                                <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                    <input matInput placeholder="" formControlName="contractname" />
                                 </mat-form-field>
-                          </div>
-                        </div>
-                        <div
+                                </div>
+                                <div fxFlex="0 0 25%">
+                                <label>{{ t('CONTRACT_ITEM') }}</label>
+                                </div>
+                                <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                    <input matInput placeholder="" formControlName="contracteditem" />
+                                </mat-form-field>
+                                </div>
+                            </div>
+                            <div
                             fxLayout="row wrap"
                             fxLayout.xs="column"
                             fxLayoutAlign.gt-sm="space-around center"
-                        >
+                          >
                             <div fxFlex="0 0 25%">
-                            <label>{{ t('CONTRACT_NAME') }}</label>
+                              <label>{{ t('OTHER_PARTY') }}</label>
                             </div>
                             <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                                <input matInput placeholder="" formControlName="contractname" />
-                            </mat-form-field>
-                            </div>
-                            <div fxFlex="0 0 25%">
-                            <label>{{ t('CONTRACT_ITEM') }}</label>
-                            </div>
-                            <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                                <input matInput placeholder="" formControlName="contracteditem" />
-                            </mat-form-field>
-                            </div>
-                        </div>
-                        <div
-                        fxLayout="row wrap"
-                        fxLayout.xs="column"
-                        fxLayoutAlign.gt-sm="space-around center"
-                      >
-                        <div fxFlex="0 0 25%">
-                          <label>{{ t('CONTRACTOR') }}</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                          <mat-form-field>
-                            <input matInput placeholder="" formControlName="contractor" />
-                          </mat-form-field>
-                          <div class="button-row">
-                            <button
-                              type="button"
-                              mat-raised-button
-                              color="primary"
-                              class="gradient-primary"
-                            >
-                              <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
-                            </button>
-                            <button
-                              type="button"
-                              mat-raised-button
-                              color="warn"
-                              class="gradient-warn"
-                            >
-                              <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
-                            </button>
-                          </div>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                          <label>{{ t('BEGINNING_DATE_OF_THE_CONTRACT') }}</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                          <mat-form-field>
-                            <input
-                              matInput
-                              [matDatepicker]="begcontperiod3"
-                              formControlName="begcontperiod"
-                            />
-                            <mat-datepicker-toggle
-                              matSuffix
-                              [for]="begcontperiod3"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #begcontperiod3></mat-datepicker>
-                          </mat-form-field>
-                        </div>
-                      </div>
-                      <div
-                        fxLayout="row wrap"
-                        fxLayout.xs="column"
-                        fxLayoutAlign.gt-sm="space-around center"
-                        >
-                        <div fxFlex="0 0 25%">
-                            <label>{{ t('END_DATE_OF_THE_CONTRACT') }}</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                            <input
-                                matInput
-                                [matDatepicker]="endcontperiod5"
-                                formControlName="endcontperiod"
-                            />
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="endcontperiod5"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #endcontperiod5></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <label>{{ t('AUTOMATIC_UPDATE') }}</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                            <mat-select formControlName="autoupdate2" name="autoupdate2">
-                                <mat-option value="yes">{{ t('YES') }}</mat-option>
-                                <mat-option value="no">{{ t('NO') }}</mat-option>
-                            </mat-select>
-                            </mat-form-field>
-                        </div>
-                        </div>
-                        <div
-                        fxLayout="row wrap"
-                        fxLayout.xs="column"
-                        fxLayoutAlign.gt-sm="space-around center"
-                        >
-                        <div fxFlex="0 0 25%">
-                            <label>{{ t('ALERT_RELEASE_DATE') }}*</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                            <input
-                                matInput
-                                [matDatepicker]="endcontperiod13"
-                                formControlName="alertreleasedate"
-                            />
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="endcontperiod13"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #endcontperiod13></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <label>{{ t('RELATE_CONTRACT_NUMBER') }}</label>
-                        </div>
-                        <div fxFlex="0 0 25%">
-                            <mat-form-field>
-                                <input matInput placeholder="" formControlName="relatecontract" />
+                              <mat-form-field>
+                                <input matInput placeholder="" formControlName="contractor" />
                               </mat-form-field>
-                        </div>
-                        </div>
-                        <div
+                              <div class="button-row">
+                                <button
+                                  type="button"
+                                  mat-raised-button
+                                  color="primary"
+                                  class="gradient-primary"
+                                >
+                                  <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
+                                </button>
+                                <button
+                                  type="button"
+                                  mat-raised-button
+                                  color="warn"
+                                  class="gradient-warn"
+                                >
+                                  <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
+                                </button>
+                              </div>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                              <label>{{ t('BEGINNING_DATE_OF_THE_CONTRACT') }}</label>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                              <mat-form-field>
+                                <input
+                                  matInput
+                                  [matDatepicker]="begcontperiod3"
+                                  formControlName="begcontperiod"
+                                />
+                                <mat-datepicker-toggle
+                                  matSuffix
+                                  [for]="begcontperiod3"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #begcontperiod3></mat-datepicker>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <div
+                            fxLayout="row wrap"
+                            fxLayout.xs="column"
+                            fxLayoutAlign.gt-sm="space-around center"
+                            >
+                            <div fxFlex="0 0 25%">
+                                <label>{{ t('END_DATE_OF_THE_CONTRACT') }}</label>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                <input
+                                    matInput
+                                    [matDatepicker]="endcontperiod5"
+                                    formControlName="endcontperiod"
+                                />
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="endcontperiod5"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #endcontperiod5></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <label>{{ t('AUTOMATIC_UPDATE') }}</label>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                <mat-select formControlName="autoupdate2" name="autoupdate2">
+                                    <mat-option value="yes">{{ t('YES') }}</mat-option>
+                                    <mat-option value="no">{{ t('NO') }}</mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                            </div>
+                            </div>
+                            <div
+                            fxLayout="row wrap"
+                            fxLayout.xs="column"
+                            fxLayoutAlign.gt-sm="space-around center"
+                            >
+                            <div fxFlex="0 0 25%">
+                                <label>{{ t('ALERT_RELEASE_DATE') }}*</label>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                <input
+                                    matInput
+                                    [matDatepicker]="endcontperiod13"
+                                    formControlName="alertreleasedate"
+                                />
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="endcontperiod13"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #endcontperiod13></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <label>{{ t('RELATE_CONTRACT_NUMBER') }}</label>
+                            </div>
+                            <div fxFlex="0 0 25%">
+                                <mat-form-field>
+                                    <input matInput placeholder="" formControlName="relatecontract" />
+                                  </mat-form-field>
+                            </div>
+                            </div>
+                            <div
+                            fxLayout="row wrap"
+                            fxLayout.xs="column"
+                            fxLayoutAlign.gt-sm="space-around center"
+                          >
+                          <div fxFlex="0 0 25%">
+                            <label>{{ t('EXTCONSULT') }}</label>
+                          </div>
+                          <div fxFlex="0 0 25%">
+                            <mat-form-field>
+                                <mat-select formControlName="externalconsultant">
+                                    <mat-option value="yes">{{ t('YES') }}</mat-option>
+                                    <mat-option value="no">{{ t('NO') }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div fxFlex="0 0 25%">
+                            <label>{{ t('FIX_VERSION_CONTRACT_ATTACHED') }}</label>
+                          </div>
+                          <div fxFlex="0 0 25%">
+                              <label class="file">
+                                <input type="file" id="file" aria-label="File browser example" formControlName="contractattached">
+                                <mat-icon>cloud_upload</mat-icon><span class="file-custom" [attr.data-lbl]="'ADD' | transloco">
+                                  </span>
+                              </label>
+                          </div>
+                          </div>
+                          <div
                         fxLayout="row wrap"
                         fxLayout.xs="column"
-                        fxLayoutAlign.gt-sm="space-around center"
-                      >
-                      <div fxFlex="0 0 25%">
-                        <label>{{ t('EXTCONSULT') }}</label>
-                      </div>
-                      <div fxFlex="0 0 25%">
-                        <mat-form-field>
-                            <mat-select formControlName="externalconsultant">
-                                <mat-option value="yes">{{ t('YES') }}</mat-option>
-                                <mat-option value="no">{{ t('NO') }}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div fxFlex="0 0 25%">
-                        <label>{{ t('FIX_VERSION_CONTRACT_ATTACHED') }}</label>
-                      </div>
-                      <div fxFlex="0 0 25%">
-                          <label class="file">
-                            <input type="file" id="file" aria-label="File browser example" formControlName="contractattached">
-                            <mat-icon>cloud_upload</mat-icon><span class="file-custom" [attr.data-lbl]="'ADD' | transloco">
-                              </span>
-                          </label>
-                      </div>
-                      </div>
-                      <div
-              fxLayout="row wrap"
-              fxLayout.xs="column"
-              fxLayoutAlign.gt-sm="space-around start"
-              style="margin-top: 20px;"
-            >
-              <div fxFlex="0 0 25%">
-                <label>{{ t('RELATED_COUNTRIES') }} </label>
-              </div>
-              <div fxFlex="0 0 25%">
-                <mat-checkbox class="country-margin" formControlName="country_korea">{{
-                  t('JAPAN')
-                }}</mat-checkbox>
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_china"
-                  >{{ t('US') }}</mat-checkbox
-                ><br />
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_korea"
-                  >{{ t('CHINA') }}</mat-checkbox
-                >
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_europe"
-                  >{{ t('TAIWAN') }}</mat-checkbox
-                >
-              </div>
-
-              <div fxFlex="0 0 50%">
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_tiwan"
-                  >{{ t('INDIA') }}</mat-checkbox
-                >
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_india"
-                  >{{ t('EUROPE') }}</mat-checkbox
-                ><br />
-                <mat-checkbox
-                  class="country-margin"
-                  formControlName="country_others"
-                  >{{ t('OTHERS') }}</mat-checkbox
-                ><br />
-              </div>
-            </div>
-                      
-                        </mat-expansion-panel>
-                      
-                      </mat-accordion>
-                      </div>
-                    </div>
-                    </form>
+                        fxLayoutAlign.gt-sm="space-around start"
+                        style="margin-top: 20px;"
+                        >
+                        <div fxFlex="0 0 25%">
+                        <label>{{ t('RELATED_COUNTRIES') }} </label>
+                        </div>
+                        <div fxFlex="0 0 25%">
+                        <mat-checkbox class="country-margin" formControlName="country_korea">{{
+                        t('JAPAN')
+                        }}</mat-checkbox>
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_china"
+                        >{{ t('US') }}</mat-checkbox
+                        ><br />
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_korea"
+                        >{{ t('CHINA') }}</mat-checkbox
+                        >
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_europe"
+                        >{{ t('TAIWAN') }}</mat-checkbox
+                        >
+                        </div>
+                        
+                        <div fxFlex="0 0 50%">
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_tiwan"
+                        >{{ t('INDIA') }}</mat-checkbox
+                        >
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_india"
+                        >{{ t('EUROPE') }}</mat-checkbox
+                        ><br />
+                        <mat-checkbox
+                        class="country-margin"
+                        formControlName="country_others"
+                        >{{ t('OTHERS') }}</mat-checkbox
+                        ><br />
+                        </div>
+                        </div>
+                            </mat-tab>
+     
+           
+                    </mat-tab-group>
+                      </form>
+                    
+                 
                   </ng-container>
                   </mat-tab>
                   <!-- MESSAGE CONTENT TAB -->

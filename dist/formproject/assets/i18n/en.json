@@ -100,6 +100,7 @@
   "FALSE": "False",
   "RECEIVING": "Receiving",
   "APP_RESPOND": "Applicant responding",
+  "APP_DIVI": "Applicant Division",
   "CONTRACT_SIGN": "Contract signed",
   "CANCELLED": "Cancelled",
   "REQUESTING": "Requesting",
@@ -116,5 +117,13 @@
   "LEGAL_BOTH":"Both",
   "ACCESS_LOG_LIST": "Access Log List",
   "OTHER_PARTY" : "Other Party",
-  "EXP_DATE_CONC": "Expected Date for Conclusion"
+  "EXP_DATE_CONC": "Expected Date for Conclusion",
+  "NEWONGOING": "New Ongoing",
+  "ONGOING":"Ongoing",
+  "CONTITEM" : "Contracted Item",
+  "CONT_PERIOD":"Contract period",
+  "CONT_PERIOD_END":"Contract period end",
+  "EXTCONSULTANT": "External consultation",
+  "FIXCONTRACT": "FIXContract",
+  "LDRD": "Legal department response deadline"
 }

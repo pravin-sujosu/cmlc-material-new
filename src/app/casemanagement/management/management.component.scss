@@ -93,3 +93,8 @@ a {
   color: #f44336 !important;
   font-weight: 400;
 }
+
+.mat-table > tbody > tr > td {
+  z-index: 1 !important;
+  
+}

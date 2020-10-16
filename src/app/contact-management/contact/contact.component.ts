@@ -66,7 +66,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   panelOpenState = false;
   caseform: FormGroup;
   contractcontentform: FormGroup;
-  showdeletebtn = false;
+  showdeletebtn = true;
   // validationMsgs = {
   //   'emailAddress': [{ type: 'email', message: 'Enter a valid email' }]
   // }
@@ -100,7 +100,8 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     'SecurityCaseClassification',
   ];
   dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA);
-
+  donshowdynfrmonload=true;
+  seltab = 0;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   private mediaSub: Subscription;
@@ -145,13 +146,15 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public addContractContentFormGroup() {
+
     const arrayofelements = this.contractcontentform.get('elementArray') as FormArray;
     arrayofelements.push(this.createContractContentFormGroup());
-    if(arrayofelements.controls.length > 1) {
-      this.showdeletebtn = true;
-    } else {
-      this.showdeletebtn = false;
-    }
+    this.seltab = arrayofelements.length;
+    // if(arrayofelements.controls.length > 1) {
+    //   this.showdeletebtn = true;
+    // } else {
+    //   this.showdeletebtn = false;
+    // }
   }
 
   public removeOrClearContractContent(i: number) {
@@ -160,20 +163,20 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     if (arrayofelements.length > 1) {
       arrayofelements.removeAt(i)
     } else {
-      arrayofelements.reset()
+      // arrayofelements.reset()
+      arrayofelements.removeAt(0)
     }
-    if(arrayofelements.controls.length > 1) {
-      this.showdeletebtn = true;
-    } else {
-      this.showdeletebtn = false;
-    }
+    // if(arrayofelements.controls.length > 1) {
+    //   this.showdeletebtn = true;
+    // } else {
+    //   this.showdeletebtn = false;
+    // }
   }
   setStep (aa) {
     
   }
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;
-    //contract content
     this.contractcontentform = this.formBuilder.group({
       elementArray: this.formBuilder.array([this.createContractContentFormGroup()])
     });
@@ -224,6 +227,8 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       });
       console.log('-----');
     });
+    const arrayofelements = this.contractcontentform.get('elementArray') as FormArray
+    arrayofelements.removeAt(0);
   }
 
 

@@ -116,5 +116,14 @@
   "LEGAL_BOTH": "両方",
   "ACCESS_LOG_LIST": "アクセスログ参照画面",
   "OTHER_PARTY" : "相手先",
-  "EXP_DATE_CONC": "締結予定日"
+  "EXP_DATE_CONC": "締結予定日",
+  "NEWONGOING": "継続的な新",
+  "ONGOING": "進行中",
+  "CONTITEM" : "契約品",
+  "APP_DIVI": "申請者課",
+  "CONT_PERIOD":"契約期間",
+  "EXTCONSULTANT": "外部相談",
+  "FIXCONTRACT": "FIX契約",
+  "LDRD": "法務部門の対応期限",
+  "CONT_PERIOD_END":"契約期間終了"
 }

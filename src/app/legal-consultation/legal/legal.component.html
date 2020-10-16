@@ -385,6 +385,40 @@
         <div
           fxLayout="row wrap"
           fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('NEWONGOING') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            
+            <mat-form-field>
+              <mat-select formControlName="new_renew" name="new_renew">
+                <mat-option value="new">{{ t('NEW') }}</mat-option>
+                <mat-option value="renewal">{{ t('ONGOING') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 25%">
+            <label>{{ t('OTHER_PARTY') }}</label>
+          </div>
+          <div fxFlex="0 0 25%">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder=""
+                formControlName="legel_dept_notes"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
           fxLayoutAlign.gt-sm="space-around start"
           style="margin-top: 20px;"
         >
@@ -425,13 +459,24 @@
             ><br />
             <mat-checkbox
             class="country-margin"
-            formControlName="country_india"
+            formControlName="country_japan"
             >{{ t('JAPAN') }}</mat-checkbox>
             <mat-checkbox
               class="country-margin"
               formControlName="country_others"
-              >{{ t('OTHERS') }}</mat-checkbox
-            ><br />
+              (change)="othercountry($event.checked)"
+              >{{ t('OTHERS') }}
+           
+              </mat-checkbox
+            >
+            <mat-form-field *ngIf="ifothercountry">
+              <input
+                matInput
+                placeholder=""
+                formControlName="legel_dept_notes"
+              />
+            </mat-form-field> 
+            <br />
           </div>
         </div>
       </ng-container>

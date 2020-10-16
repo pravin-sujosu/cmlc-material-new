@@ -84,7 +84,7 @@
             </mat-form-field>
           </div>
           <div fxFlex="0 0 25%">
-            <label>{{ t('CONTROL_NUMBER') }}</label>
+            <label>{{ t('CONTITEM') }}</label>
           </div>
           <div fxFlex="0 0 25%">
             <mat-form-field>
@@ -712,64 +712,72 @@
                   sticky
                   *transloco="let t"
                 >
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
                     {{ t('CONTROL_NUMBER') }}
                   </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     {{ element.Controlnumber }}
                   </td>
                 </ng-container>
 
                 <!-- BranchNumber Column -->
                 <ng-container matColumnDef="BranchNumber" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
                     {{ t('BRANCH_NUMBER') }}
                   </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     {{ element.BranchNumber }}
                   </td>
                 </ng-container>
 
-                <!-- Applicationdepartment Column -->
-                <ng-container matColumnDef="Applicationdepartment" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
-                    {{ t('APPLY_F_DEPT') }}
+                <!-- ApplicationDate Column -->
+                <!-- <ng-container matColumnDef="ApplicationDate" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                    {{ t('APPL_DATE') }}
                   </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
-                    <mat-chip-list aria-label="Applicationdepartment">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    <mat-chip-list aria-label="ApplicationDate">
                       <mat-chip color="accent" selected class="chipred"
-                        >{{ element.Applicationdepartment }}
+                        >{{ element.ApplicationDate }}
                       </mat-chip>
                     </mat-chip-list>
                   </td>
-                </ng-container>
+                </ng-container> -->
 
                 <!-- Applicant Column -->
-                <ng-container matColumnDef="Applicant" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
+                <!-- <ng-container matColumnDef="Applicant" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
                     {{ t('APPLICANT') }}
                   </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     {{ element.Applicant }}
                   </td>
-                </ng-container>
+                </ng-container> -->
 
                 <!-- ApplicationDate Column -->
-                <ng-container matColumnDef="ApplicationDate">
-                  <th mat-header-cell *matHeaderCellDef>
+                <ng-container matColumnDef="ApplicationDate" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
                     {{ t('APPL_DATE') }}
                   </th>
-                  <td mat-cell *matCellDef="let element">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     {{ element.ApplicationDate }}
                   </td>
                 </ng-container>
 
+                     <!-- Status Column -->
+                     <ng-container matColumnDef="Status" sticky>
+                      <th mat-header-cell *matHeaderCellDef style="width: 40px;">{{ t('STATUS') }}</th>
+                      <td mat-cell *matCellDef="let element" style="width: 40px;">
+                        {{ element.Status }}
+                      </td>
+                    </ng-container>
+
                 <!-- ContractName Column -->
-                <ng-container matColumnDef="ContractName">
-                  <th mat-header-cell *matHeaderCellDef>
+                <ng-container matColumnDef="ContractName" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
                     {{ t('CONTRACT_NAME') }}
                   </th>
-                  <td mat-cell *matCellDef="let element">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     <span *ngIf="element.BranchNumber != 3 && element.BranchNumber != 4">{{element.ContractName}}</span>
                     <div
                       class="popover__wrapper"
@@ -796,76 +804,42 @@
                   </td>
                 </ng-container>
 
-                <!-- ContractType Column -->
-                <ng-container matColumnDef="ContractType">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('CONTRACT_TYPE') }}
+                <!-- otherparty Column -->
+                <ng-container matColumnDef="OtherParty" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                    {{ t('OTHER_PARTY') }}
                   </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractType }}
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.OtherParty }}
                   </td>
                 </ng-container>
 
-                <!-- NewRenewal Column -->
-                <ng-container matColumnDef="NewRenewal">
+                <!-- Applicantdivision Column -->
+                <ng-container matColumnDef="Applicantdivision" >
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                    {{ t('APP_DIVI') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.Applicantdivision }}
+                  </td>
+                </ng-container> 
+
+                <!-- Applicationdepartment Column -->
+                <ng-container matColumnDef="Applicationdepartment">
                   <th mat-header-cell *matHeaderCellDef>
-                    {{ t('NEW_RENEWAL') }}
+                    {{ t('APPLY_F_DEPT') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
-                    <mat-chip-list aria-label="Applicationdepartment">
-                      <mat-chip
-                        color="accent"
-                        selected
-                        class="chipgreen"
-                        *ngIf="element.NewRenewal == 'New'"
-                        >{{ element.NewRenewal }}
-                      </mat-chip>
-                      <mat-chip
-                        color="accent"
-                        selected
-                        class="chipindigo"
-                        *ngIf="element.NewRenewal == 'Renew'"
-                        >{{ element.NewRenewal }}
-                      </mat-chip>
-                    </mat-chip-list>
+                    {{ element.Applicationdepartment }}
                   </td>
                 </ng-container>
-
-                <!-- Contractor Column -->
-                <ng-container matColumnDef="Contractor">
+                <!-- Applicant Column -->
+                <ng-container matColumnDef="Applicant">
                   <th mat-header-cell *matHeaderCellDef>
-                    {{ t('CONTRACTOR') }}
+                    {{ t('APPLICANT') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
-                    {{ element.Contractor }}
-                  </td>
-                </ng-container>
-
-                <!-- ContractBeginningDate Column -->
-                <ng-container matColumnDef="ContractBeginningDate">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('BEGINNING_DATE_OF_THE_CONTRACT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractBeginningDate }}
-                  </td>
-                </ng-container>
-
-                <!-- ContractEndDate Column -->
-                <ng-container matColumnDef="ContractEndDate">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('END_DATE_OF_THE_CONTRACT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractEndDate }}
-                  </td>
-                </ng-container>
-
-                <!-- Status Column -->
-                <ng-container matColumnDef="Status">
-                  <th mat-header-cell *matHeaderCellDef>{{ t('STATUS') }}</th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.Status }}
+                    {{ element.Applicant }}
                   </td>
                 </ng-container>
 
@@ -879,23 +853,193 @@
                   </td>
                 </ng-container>
 
+           
+
+                <!-- Contractperiod Column -->
+                <ng-container matColumnDef="Contractperiod">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ t('CONT_PERIOD') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Contractperiod }}
+                  </td>
+                </ng-container>
+
+                <!-- Contractperiodend Column -->
+                <ng-container matColumnDef="Contractperiodend">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ t('CONT_PERIOD_END') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Contractperiodend }}
+                  </td>
+                </ng-container>
+                  <!-- Automaticupdate Column -->
+                  <ng-container matColumnDef="Automaticupdate">
+                    <th mat-header-cell *matHeaderCellDef>
+                      {{ t('AUTOMATIC_UPDATE') }}
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.Automaticupdate }}
+                    </td>
+                  </ng-container>
+                  
+              
+              <!-- Relatedcountries Column -->
+               <ng-container matColumnDef="Relatedcountries">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('RELATED_COUNTRIES') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Relatedcountries }}
+                </td>
+              </ng-container>
+
+               <!-- ProjectName Column -->
+               <ng-container matColumnDef="ProjectName">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('PNAME') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.ProjectName }}
+                </td>
+              </ng-container>
+
+               <!-- ContractType Column -->
+               <ng-container matColumnDef="ContractType">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('CONTRACT_TYPE') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.ContractType }}
+                </td>
+              </ng-container>
+              
+              <!-- Externalconsultation Column -->
+              <ng-container matColumnDef="Externalconsultation">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('EXTCONSULTANT') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Externalconsultation }}
+                </td>
+              </ng-container>
+
+               <!-- Contracteditem Column -->
+               <ng-container matColumnDef="Contracteditem">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('CONTITEM') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Contracteditem }}
+                </td>
+              </ng-container>
+             
+              <!-- Newongoing Column -->
+              <ng-container matColumnDef="Newongoing">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('NEWONGOING') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Newongoing }}
+                </td>
+              </ng-container>
+            
+            <!-- Alertreleasedate Column -->
+             <ng-container matColumnDef="Alertreleasedate">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('ALERT_RELEASE_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Alertreleasedate }}
+              </td>
+            </ng-container>
+
+            <!-- Relatedcontractnumber Column -->
+            <ng-container matColumnDef="Relatedcontractnumber">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('RELATE_CONTRACT_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Relatedcontractnumber }}
+              </td>
+            </ng-container>
+           
+            <!-- Expecteddateofconsultion Column -->
+            <ng-container matColumnDef="Expecteddateofconsultion">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('CONC_OF_S_D') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Expecteddateofconsultion }}
+              </td>
+            </ng-container>
+
+             <!-- FIXContract Column -->
+             <ng-container matColumnDef="FIXContract">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('FIXCONTRACT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.FIXContract }}
+              </td>
+            </ng-container>
+          
+          <!-- Approvaldecisionnumber Column -->
+          <ng-container matColumnDef="Approvaldecisionnumber">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('APPROVAL_DECISION_NUMBER') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Approvaldecisionnumber }}
+            </td>
+          </ng-container>
+
+           <!-- Managementstatus Column -->
+           <ng-container matColumnDef="Managementstatus">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('MANAGEMENT_STATE') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Managementstatus }}
+            </td>
+          </ng-container>
+          
+          <!-- Legaldepartmentreceptiondate Column -->
+          <ng-container matColumnDef="Legaldepartmentreceptiondate">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('LDPD') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Legaldepartmentreceptiondate }}
+            </td>
+          </ng-container>
+           <!-- Legaldepartmentresponsedeadline Column -->
+           <ng-container matColumnDef="Legaldepartmentresponsedeadline">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('LDRD') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Legaldepartmentresponsedeadline }}
+            </td>
+          </ng-container>
                 <!-- Remarks Column -->
-                <ng-container matColumnDef="Remarks">
+                <!-- <ng-container matColumnDef="Remarks">
                   <th mat-header-cell *matHeaderCellDef>{{ t('REMARKS') }}</th>
                   <td mat-cell *matCellDef="let element">
                     {{ element.Remarks }}
                   </td>
-                </ng-container>
+                </ng-container> -->
 
                 <!-- SecurityCaseClassification Column -->
-                <ng-container matColumnDef="SecurityCaseClassification">
+                <!-- <ng-container matColumnDef="SecurityCaseClassification">
                   <th mat-header-cell *matHeaderCellDef>
                     {{ t('SEC_CASE_CLASSIF') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
                     {{ element.SecurityCaseClassification }}
                   </td>
-                </ng-container>
+                </ng-container> -->
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr
@@ -909,237 +1053,360 @@
           </div>
         </div>
         <div
-          fxLayout="row wrap"
-          fxLayout.xs="column"
-          style="margin-top: 10px;"
-          fxHide.gt-sm
-          class="only-mobile"
-          *transloco="let t"
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        style="margin-top: 10px;"
+        fxHide.gt-sm
+        class="only-mobile"
+        *transloco="let t"
         >
-          <div fxFlex="0 0 100%">
-            <div class="datatable-container mat-elevation-z1">
-              <table mat-table [dataSource]="dataSource" class="casetable">
-                <!-- Controlnumber Column -->
-
-                <ng-container matColumnDef="Controlnumber">
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
-                    {{ t('CONTROL_NUMBER') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
-                    {{ element.Controlnumber }}
-                  </td>
-                </ng-container>
-
-                <!-- BranchNumber Column -->
-                <ng-container matColumnDef="BranchNumber">
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
-                    {{ t('BRANCH_NUMBER') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
-                    {{ element.BranchNumber }}
-                  </td>
-                </ng-container>
-
-                <!-- Applicationdepartment Column -->
-                <ng-container matColumnDef="Applicationdepartment">
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
-                    {{ t('APPLY_F_DEPT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
-                    <mat-chip-list aria-label="Applicationdepartment">
-                      <mat-chip color="accent" selected class="chipred"
-                        >{{ element.Applicationdepartment }}
-                      </mat-chip>
-                    </mat-chip-list>
-                  </td>
-                </ng-container>
-
-                <!-- Applicant Column -->
-                <ng-container matColumnDef="Applicant">
-                  <th mat-header-cell *matHeaderCellDef style="width: 140px;">
-                    {{ t('APPLICANT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element" style="width: 140px;">
-                    {{ element.Applicant }}
-                  </td>
-                </ng-container>
-
-                <!-- ApplicationDate Column -->
-                <ng-container matColumnDef="ApplicationDate">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('APPL_DATE') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ApplicationDate }}
-                  </td>
-                </ng-container>
-
-                <!-- ContractName Column -->
-                <ng-container matColumnDef="ContractName">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('CONTRACT_NAME') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    <span
-                      *ngIf="
-                        element.BranchNumber != 3 && element.BranchNumber != 4
-                      "
-                      >{{ element.ContractName }}</span
-                    >
-                    <div
-                      class="popover__wrapper"
-                      *ngIf="
-                        element.BranchNumber == 3 || element.BranchNumber == 4
-                      "
-                    >
-                      <a href="javascript:void(0)">
-                        <h2 class="popover__title">
-                          {{ element.ContractName }}...<mat-icon class="iconfix"
-                            >screen_share</mat-icon
-                          >
-                        </h2>
-                      </a>
-                      <div class="popover__content">
-                        <p class="popover__message">Dummy Text</p>
-                        <p>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s.
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                </ng-container>
-
-                <!-- ContractType Column -->
-                <ng-container matColumnDef="ContractType">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('CONTRACT_TYPE') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractType }}
-                  </td>
-                </ng-container>
-
-                <!-- NewRenewal Column -->
-                <ng-container matColumnDef="NewRenewal">
-                  <th mat-header-cell *matHeaderCellDef>New/Renewal</th>
-                  <td mat-cell *matCellDef="let element">
-                    <mat-chip-list aria-label="Applicationdepartment">
-                      <mat-chip
-                        color="accent"
-                        selected
-                        class="chipgreen"
-                        *ngIf="element.NewRenewal == 'New'"
-                        >{{ element.NewRenewal }}
-                      </mat-chip>
-                      <mat-chip
-                        color="accent"
-                        selected
-                        class="chipindigo"
-                        *ngIf="element.NewRenewal == 'Renew'"
-                        >{{ element.NewRenewal }}
-                      </mat-chip>
-                    </mat-chip-list>
-                  </td>
-                </ng-container>
-
-                <!-- Contractor Column -->
-                <ng-container matColumnDef="Contractor">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('CONTRACTOR') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.Contractor }}
-                  </td>
-                </ng-container>
-
-                <!-- ContractBeginningDate Column -->
-                <ng-container matColumnDef="ContractBeginningDate">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('BEGINNING_DATE_OF_THE_CONTRACT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractBeginningDate }}
-                  </td>
-                </ng-container>
-
-                <!-- ContractEndDate Column -->
-                <ng-container matColumnDef="ContractEndDate">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ t('END_DATE_OF_THE_CONTRACT') }}
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.ContractEndDate }}
-                  </td>
-                </ng-container>
-
-                <!-- Status Column -->
-                <ng-container matColumnDef="Status">
-                  <th mat-header-cell *matHeaderCellDef>Status</th>
-                  <td mat-cell *matCellDef="let element">
+        <div fxFlex="0 0 100%">
+          <div class="datatable-container mat-elevation-z1">
+            <table mat-table [dataSource]="dataSource" class="casetable">
+              <!-- Controlnumber Column -->
+        
+              <ng-container
+              matColumnDef="Controlnumber"
+              
+              *transloco="let t"
+            >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('CONTROL_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Controlnumber }}
+              </td>
+            </ng-container>
+        
+            <!-- BranchNumber Column -->
+            <ng-container matColumnDef="BranchNumber" >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('BRANCH_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.BranchNumber }}
+              </td>
+            </ng-container>
+        
+            <!-- ApplicationDate Column -->
+            <!-- <ng-container matColumnDef="ApplicationDate" sticky>
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPL_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                <mat-chip-list aria-label="ApplicationDate">
+                  <mat-chip color="accent" selected class="chipred"
+                    >{{ element.ApplicationDate }}
+                  </mat-chip>
+                </mat-chip-list>
+              </td>
+            </ng-container> -->
+        
+            <!-- Applicant Column -->
+            <!-- <ng-container matColumnDef="Applicant" sticky>
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPLICANT') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Applicant }}
+              </td>
+            </ng-container> -->
+        
+            <!-- ApplicationDate Column -->
+            <ng-container matColumnDef="ApplicationDate">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPL_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.ApplicationDate }}
+              </td>
+            </ng-container>
+        
+                 <!-- Status Column -->
+                 <ng-container matColumnDef="Status">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">{{ t('STATUS') }}</th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
                     {{ element.Status }}
                   </td>
                 </ng-container>
-
-                <!-- LegalRepresentative Column -->
-                <ng-container matColumnDef="LegalRepresentative">
-                  <th mat-header-cell *matHeaderCellDef>
-                    Legal Representative
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.LegalRepresentative }}
-                  </td>
-                </ng-container>
-
-                <!-- Remarks Column -->
-                <ng-container matColumnDef="Remarks">
-                  <th mat-header-cell *matHeaderCellDef>Remarks</th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.Remarks }}
-                  </td>
-                </ng-container>
-
-                <!-- SecurityCaseClassification Column -->
-                <ng-container matColumnDef="SecurityCaseClassification">
-                  <th mat-header-cell *matHeaderCellDef>
-                    Security Case Classification
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.SecurityCaseClassification }}
-                  </td>
-                </ng-container>
-
-                <!-- Star Column -->
-                <!-- <ng-container matColumnDef="star" stickyEnd>
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let element">
-                      <mat-icon>more_vert</mat-icon>
-                    </td>
-                  </ng-container> -->
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr
-                  mat-row
-                  *matRowDef="let row; let odd = odd; columns: displayedColumns"
-                  [ngClass]="{ gray: odd }"
-                ></tr>
-              </table>
-            </div>
+        
+            <!-- ContractName Column -->
+            <ng-container matColumnDef="ContractName">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('CONTRACT_NAME') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                <span *ngIf="element.BranchNumber != 3 && element.BranchNumber != 4">{{element.ContractName}}</span>
+                <div
+                  class="popover__wrapper"
+                  *ngIf="
+                    element.BranchNumber == 3 || element.BranchNumber == 4
+                  "
+                >
+                  <a href="#">
+                    <h2 class="popover__title">
+                      {{ element.ContractName }}...<mat-icon class="iconfix"
+                        >screen_share</mat-icon
+                      >
+                    </h2>
+                  </a>
+                  <div class="popover__content">
+                    <p class="popover__message">Dummy Text</p>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the
+                      industry's standard dummy text ever since the 1500s.
+                    </p>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+        
+            <!-- otherparty Column -->
+            <ng-container matColumnDef="OtherParty">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('OTHER_PARTY') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.OtherParty }}
+              </td>
+            </ng-container>
+        
+            <!-- Applicantdivision Column -->
+            <ng-container matColumnDef="Applicantdivision" >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APP_DIVI') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Applicantdivision }}
+              </td>
+            </ng-container> 
+        
+            <!-- Applicationdepartment Column -->
+            <ng-container matColumnDef="Applicationdepartment">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('APPLY_F_DEPT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Applicationdepartment }}
+              </td>
+            </ng-container>
+            <!-- Applicant Column -->
+            <ng-container matColumnDef="Applicant">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('APPLICANT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Applicant }}
+              </td>
+            </ng-container>
+        
+            <!-- LegalRepresentative Column -->
+            <ng-container matColumnDef="LegalRepresentative">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('LEGAL_REPRESENTATIVE') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.LegalRepresentative }}
+              </td>
+            </ng-container>
+        
+        
+        
+            <!-- Contractperiod Column -->
+            <ng-container matColumnDef="Contractperiod">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('CONT_PERIOD') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Contractperiod }}
+              </td>
+            </ng-container>
+        
+            <!-- Contractperiodend Column -->
+            <ng-container matColumnDef="Contractperiodend">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('CONT_PERIOD_END') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Contractperiodend }}
+              </td>
+            </ng-container>
+              <!-- Automaticupdate Column -->
+              <ng-container matColumnDef="Automaticupdate">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('AUTOMATIC_UPDATE') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Automaticupdate }}
+                </td>
+              </ng-container>
+              
+          
+          <!-- Relatedcountries Column -->
+           <ng-container matColumnDef="Relatedcountries">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('RELATED_COUNTRIES') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Relatedcountries }}
+            </td>
+          </ng-container>
+        
+           <!-- ProjectName Column -->
+           <ng-container matColumnDef="ProjectName">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('PNAME') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.ProjectName }}
+            </td>
+          </ng-container>
+        
+           <!-- ContractType Column -->
+           <ng-container matColumnDef="ContractType">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('CONTRACT_TYPE') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.ContractType }}
+            </td>
+          </ng-container>
+          
+          <!-- Externalconsultation Column -->
+          <ng-container matColumnDef="Externalconsultation">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('EXTCONSULTANT') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Externalconsultation }}
+            </td>
+          </ng-container>
+        
+           <!-- Contracteditem Column -->
+           <ng-container matColumnDef="Contracteditem">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('CONTITEM') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Contracteditem }}
+            </td>
+          </ng-container>
+         
+          <!-- Newongoing Column -->
+          <ng-container matColumnDef="Newongoing">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('NEWONGOING') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Newongoing }}
+            </td>
+          </ng-container>
+        
+        <!-- Alertreleasedate Column -->
+         <ng-container matColumnDef="Alertreleasedate">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('ALERT_RELEASE_DATE') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Alertreleasedate }}
+          </td>
+        </ng-container>
+        
+        <!-- Relatedcontractnumber Column -->
+        <ng-container matColumnDef="Relatedcontractnumber">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('RELATE_CONTRACT_NUMBER') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Relatedcontractnumber }}
+          </td>
+        </ng-container>
+        
+        <!-- Expecteddateofconsultion Column -->
+        <ng-container matColumnDef="Expecteddateofconsultion">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('CONC_OF_S_D') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Expecteddateofconsultion }}
+          </td>
+        </ng-container>
+        
+         <!-- FIXContract Column -->
+         <ng-container matColumnDef="FIXContract">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('FIXCONTRACT') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.FIXContract }}
+          </td>
+        </ng-container>
+        
+        <!-- Approvaldecisionnumber Column -->
+        <ng-container matColumnDef="Approvaldecisionnumber">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('APPROVAL_DECISION_NUMBER') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Approvaldecisionnumber }}
+        </td>
+        </ng-container>
+        
+        <!-- Managementstatus Column -->
+        <ng-container matColumnDef="Managementstatus">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('MANAGEMENT_STATE') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Managementstatus }}
+        </td>
+        </ng-container>
+        
+        <!-- Legaldepartmentreceptiondate Column -->
+        <ng-container matColumnDef="Legaldepartmentreceptiondate">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('LDPD') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Legaldepartmentreceptiondate }}
+        </td>
+        </ng-container>
+        <!-- Legaldepartmentresponsedeadline Column -->
+        <ng-container matColumnDef="Legaldepartmentresponsedeadline">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('LDRD') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Legaldepartmentresponsedeadline }}
+        </td>
+        </ng-container>
+        
+        
+          
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; let odd = odd; columns: displayedColumns"
+                [ngClass]="{ gray: odd }"
+              ></tr>
+            </table>
           </div>
         </div>
+        </div>
         <div
-          fxLayout="row wrap"
-          fxLayout.xs="column"
-          fxLayoutAlign="space-around center"
-          style="margin-top: 10px;"
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-around center"
+        style="margin-top: 10px;"
         >
-          <div fxFlex="0 0 100%">
-            <mat-paginator
-              [pageSizeOptions]="[5, 10, 20]"
-              showFirstLastButtons
-            ></mat-paginator>
-          </div>
+        <div fxFlex="0 0 100%">
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+          ></mat-paginator>
+        </div>
         </div>
       </mat-card>
     </mat-card>

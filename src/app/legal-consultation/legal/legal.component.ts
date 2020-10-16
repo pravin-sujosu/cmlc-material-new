@@ -97,6 +97,7 @@ export class LegalComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   private mediaSub: Subscription;
+  ifothercountry = false;
   constructor(
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
@@ -110,6 +111,9 @@ export class LegalComponent implements OnInit, AfterViewInit, OnDestroy {
   // }
   setActiveLang(lang: string) {
     this.transloco.setActiveLang(lang);
+  }
+  othercountry (otherselected: boolean) {
+    otherselected ? this.ifothercountry=true:this.ifothercountry=false;
   }
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;
@@ -151,6 +155,7 @@ export class LegalComponent implements OnInit, AfterViewInit, OnDestroy {
       country_europe: new FormControl(''),
       country_tiwan: new FormControl(''),
       country_india: new FormControl(''),
+      country_japan: new FormControl(true),
       country_others: new FormControl(''),
     });
     this.mediaSub = this.mediaObserver.asObservable().subscribe((change) => {
