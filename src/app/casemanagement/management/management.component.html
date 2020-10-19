@@ -22,7 +22,10 @@
             <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
               >JP</mat-button-toggle
             > </mat-button-toggle-group
-          ><button mat-raised-button color="accent" type="submit">
+          ><button mat-raised-button color="accent" type="button" style="margin-right: 5px;">
+            <mat-icon>cloud_download</mat-icon> 
+            <span fxHide.lt-md>{{ t('CSV_CREATE') }}</span>
+          </button> <button mat-raised-button color="accent" type="submit">
             <mat-icon>search</mat-icon>
             <span fxHide.lt-md>{{ t('SEARCH') }}</span>
           </button>
@@ -673,7 +676,7 @@
                   >{{ t('THE_TOALNOFC') }}:
                   <mat-chip color="primary" selected>11</mat-chip></span
                 >
-                <button
+                <!-- <button
                   type="button"
                   mat-raised-button
                   color="primary"
@@ -688,7 +691,7 @@
                   class="gradient-indigo"
                 >
                   <mat-icon>print</mat-icon> {{ t('PRINT') }}
-                </button>
+                </button> -->
               </div>
             </div>
           </div>

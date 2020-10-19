@@ -3,7 +3,7 @@
       <img src="http://www.icloud8.net/cmlc/images/logo.png" alt="" />
     </div>
     <form [formGroup]="caseform" autocomplete="off" (ngSubmit)="onSubmit()">
-      <mat-card class="main casemag">
+      <mat-card class="main accesslog">
         <ng-container *transloco="let t">
           <mat-card-header>
             <mat-card-title style="min-height: 40px; margin: 0;"
@@ -223,7 +223,7 @@
                     >{{ t('THE_TOALNOFC') }}:
                     <mat-chip color="primary" selected>11</mat-chip></span
                   >
-                  <button
+                  <!-- <button
                     type="button"
                     mat-raised-button
                     color="primary"
@@ -238,7 +238,7 @@
                     class="gradient-indigo"
                   >
                     <mat-icon>print</mat-icon> {{ t('PRINT') }}
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>

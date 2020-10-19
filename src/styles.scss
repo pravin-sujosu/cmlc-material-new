@@ -60,7 +60,9 @@ form {
   margin-top: 110px;
   margin-bottom: 50px;
 }
-
+.main.accesslog > .mat-card-header .mat-card-header-text {
+  width: calc(100% - 230px);
+}
 .main > .mat-card-header {
   border-radius: 3px;
   margin-top: -50px !important;
@@ -112,8 +114,9 @@ form {
   font-weight: 400;
 }
 .main.casemag > .mat-card-header .mat-card-header-text {
-  width: calc(100% - 240px);
+  width: calc(100% - 342px);
 }
+
 .gradient-warn {
   background: linear-gradient(60deg, #ef0929, #ec4e65);
 }
@@ -214,7 +217,7 @@ tr.mat-row.gray {
 // handheld device
 @media only screen and (max-device-width: 480px) {
   .main > .mat-card-header .mat-card-header-text {
-    width: auto;
+    width: auto !important;
   }
   .main > .mat-card-header-text {
     margin: 0 12px !important;
@@ -236,7 +239,7 @@ tr.mat-row.gray {
     display: block;
     align-content: space-evenly;
     align-items: baseline;
-    line-height: 3em;
+    line-height: auto;
   }
   .margintop {
     margin-top: 20px;
