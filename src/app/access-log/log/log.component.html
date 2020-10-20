@@ -254,7 +254,7 @@
           >
             <div fxFlex="0 0 100%">
               <div class="datatable-container mat-elevation-z1">
-                <table mat-table [dataSource]="dataSource" class="casetable">
+                <table mat-table [dataSource]="dataSource" class="casetable" matSort (matSortChange)="sortData($event)">
                   <!-- Controlnumber Column -->
   
                   <ng-container
@@ -262,7 +262,7 @@
                     
                     *transloco="let t"
                   >
-                    <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="Controlnumber">
                       {{ t('CONTROL_NUMBER') }}
                     </th>
                     <td mat-cell *matCellDef="let element">
@@ -272,7 +272,7 @@
   
                   <!-- BranchNumber Column -->
                   <ng-container matColumnDef="ProjectName" >
-                    <th mat-header-cell *matHeaderCellDef >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="ProjectName">
                       {{ t('PNAME') }}
                     </th>
                     <td mat-cell *matCellDef="let element" >
@@ -282,7 +282,7 @@
   
                   <!-- Applicationdepartment Column -->
                   <ng-container matColumnDef="Operator">
-                    <th mat-header-cell *matHeaderCellDef >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="Operator">
                       {{ t('OPERATOR') }}
                     </th>
                     <td mat-cell *matCellDef="let element" >
@@ -292,7 +292,7 @@
   
                   <!-- Applicant Column -->
                   <ng-container matColumnDef="OperationDate">
-                    <th mat-header-cell *matHeaderCellDef >
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="OperationDate">
                       {{ t('OPERATION_DATE') }}
                     </th>
                     <td mat-cell *matCellDef="let element" >
@@ -302,7 +302,7 @@
   
                   <!-- ApplicationDate Column -->
                   <ng-container matColumnDef="OperationType">
-                    <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="OperationType">
                       {{ t('OPERATION_TYPE') }}
                     </th>
                     <td mat-cell *matCellDef="let element">
@@ -404,10 +404,11 @@
             style="margin-top: 10px;"
           >
             <div fxFlex="0 0 100%">
-              <mat-paginator
-                [pageSizeOptions]="[5, 10, 20]"
-                showFirstLastButtons
-              ></mat-paginator>
+              <mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event">
+            </mat-paginator>
             </div>
           </div>
         </mat-card>

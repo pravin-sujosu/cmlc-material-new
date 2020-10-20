@@ -30,6 +30,7 @@ import * as _moment from 'moment';
 // import {default as _rollupMoment,  Moment} from 'moment';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { TranslocoService } from '@ngneat/transloco';
+import { MatSort, Sort } from '@angular/material/sort';
 // const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
@@ -63,6 +64,9 @@ export const MY_FORMATS = {
 })
 export class LogComponent implements OnInit, AfterViewInit, OnDestroy {
   caseform: FormGroup;
+  length = 25 ;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25];
   // MatPaginator Inputs
   //  length = 11;
   //  pageSize = 5;
@@ -85,13 +89,47 @@ export class LogComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+   
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    }
+  }
   private mediaSub: Subscription;
   constructor(
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
     private transloco: TranslocoService
-  ) {}
+  ) {
+    this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice());
+  }
+
+  sortData(sort: Sort) {
+    // const data = ELEMENT_DATA.slice();
+    console.log('dataSource1', new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice()));
+    if (!sort.active || sort.direction === '') {
+      // this.sortedData = data;
+      this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice());
+      return;
+    }
+
+    this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Controlnumber': return compare(a.Controlnumber, b.Controlnumber, isAsc);
+        case 'ProjectName': return compare(a.ProjectName, b.ProjectName, isAsc);
+        case 'Operator': return compare(a.Operator, b.Operator, isAsc);
+        case 'OperationDate': return compare(a.OperationDate, b.OperationDate, isAsc);
+        case 'OperationType': return compare(a.OperationType, b.OperationType, isAsc);
+       
+        default: return 0;
+      }
+    }));
+    this.dataSource.paginator = this.paginator;
+    // this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    //this.paginator.pageIndex = 0
+  }
 
   // setPageSizeOptions(setPageSizeOptionsInput: string) {
   //   if (setPageSizeOptionsInput) {
@@ -286,3 +324,8 @@ const ELEMENT_DATA: CaseMangElement[] = [
     OperationType: 'Operation Type',
   }
 ];
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  console.log('sorted data', (a < b ? -1 : 1) * (isAsc ? 1 : -1));
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}

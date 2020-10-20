@@ -707,7 +707,7 @@
         >
           <div fxFlex="0 0 100%">
             <div class="datatable-container mat-elevation-z1">
-              <table mat-table [dataSource]="dataSource" class="casetable">
+              <table mat-table [dataSource]="dataSource" class="casetable"  matSort (matSortChange)="sortData($event)">
                 <!-- Controlnumber Column -->
 
                 <ng-container
@@ -715,7 +715,7 @@
                   sticky
                   *transloco="let t"
                 >
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Controlnumber">
                     {{ t('CONTROL_NUMBER') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -725,7 +725,7 @@
 
                 <!-- BranchNumber Column -->
                 <ng-container matColumnDef="BranchNumber" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="BranchNumber">
                     {{ t('BRANCH_NUMBER') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -759,7 +759,7 @@
 
                 <!-- ApplicationDate Column -->
                 <ng-container matColumnDef="ApplicationDate" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="ApplicationDate">
                     {{ t('APPL_DATE') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -769,7 +769,7 @@
 
                      <!-- Status Column -->
                      <ng-container matColumnDef="Status" sticky>
-                      <th mat-header-cell *matHeaderCellDef style="width: 40px;">{{ t('STATUS') }}</th>
+                      <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="ContractName">{{ t('STATUS') }}</th>
                       <td mat-cell *matCellDef="let element" style="width: 40px;">
                         {{ element.Status }}
                       </td>
@@ -777,7 +777,7 @@
 
                 <!-- ContractName Column -->
                 <ng-container matColumnDef="ContractName" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Status">
                     {{ t('CONTRACT_NAME') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -809,7 +809,7 @@
 
                 <!-- otherparty Column -->
                 <ng-container matColumnDef="OtherParty" sticky>
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="OtherParty">
                     {{ t('OTHER_PARTY') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -819,7 +819,7 @@
 
                 <!-- Applicantdivision Column -->
                 <ng-container matColumnDef="Applicantdivision" >
-                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Applicantdivision">
                     {{ t('APP_DIVI') }}
                   </th>
                   <td mat-cell *matCellDef="let element" style="width: 40px;">
@@ -829,7 +829,7 @@
 
                 <!-- Applicationdepartment Column -->
                 <ng-container matColumnDef="Applicationdepartment">
-                  <th mat-header-cell *matHeaderCellDef>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Applicationdepartment">
                     {{ t('APPLY_F_DEPT') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
@@ -838,7 +838,7 @@
                 </ng-container>
                 <!-- Applicant Column -->
                 <ng-container matColumnDef="Applicant">
-                  <th mat-header-cell *matHeaderCellDef>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Applicant">
                     {{ t('APPLICANT') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
@@ -848,7 +848,7 @@
 
                 <!-- LegalRepresentative Column -->
                 <ng-container matColumnDef="LegalRepresentative">
-                  <th mat-header-cell *matHeaderCellDef>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="LegalRepresentative">
                     {{ t('LEGAL_REPRESENTATIVE') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
@@ -860,17 +860,17 @@
 
                 <!-- Contractperiod Column -->
                 <ng-container matColumnDef="Contractperiod">
-                  <th mat-header-cell *matHeaderCellDef>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Contractperiod">
                     {{ t('CONT_PERIOD') }}
                   </th>
-                  <td mat-cell *matCellDef="let element">
+                  <td mat-cell *matCellDef="let element" >
                     {{ element.Contractperiod }}
                   </td>
                 </ng-container>
 
                 <!-- Contractperiodend Column -->
                 <ng-container matColumnDef="Contractperiodend">
-                  <th mat-header-cell *matHeaderCellDef>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Contractperiodend">
                     {{ t('CONT_PERIOD_END') }}
                   </th>
                   <td mat-cell *matCellDef="let element">
@@ -879,7 +879,7 @@
                 </ng-container>
                   <!-- Automaticupdate Column -->
                   <ng-container matColumnDef="Automaticupdate">
-                    <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="Automaticupdate">
                       {{ t('AUTOMATIC_UPDATE') }}
                     </th>
                     <td mat-cell *matCellDef="let element">
@@ -890,7 +890,7 @@
               
               <!-- Relatedcountries Column -->
                <ng-container matColumnDef="Relatedcountries">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="Relatedcountries">
                   {{ t('RELATED_COUNTRIES') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -900,7 +900,7 @@
 
                <!-- ProjectName Column -->
                <ng-container matColumnDef="ProjectName">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="ProjectName">
                   {{ t('PNAME') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -910,7 +910,7 @@
 
                <!-- ContractType Column -->
                <ng-container matColumnDef="ContractType">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="ContractType">
                   {{ t('CONTRACT_TYPE') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -920,7 +920,7 @@
               
               <!-- Externalconsultation Column -->
               <ng-container matColumnDef="Externalconsultation">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Externalconsultation">
                   {{ t('EXTCONSULTANT') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -930,7 +930,7 @@
 
                <!-- Contracteditem Column -->
                <ng-container matColumnDef="Contracteditem">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Contracteditem">
                   {{ t('CONTITEM') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -940,7 +940,7 @@
              
               <!-- Newongoing Column -->
               <ng-container matColumnDef="Newongoing">
-                <th mat-header-cell *matHeaderCellDef>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Newongoing">
                   {{ t('NEWONGOING') }}
                 </th>
                 <td mat-cell *matCellDef="let element">
@@ -950,7 +950,7 @@
             
             <!-- Alertreleasedate Column -->
              <ng-container matColumnDef="Alertreleasedate">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Alertreleasedate">
                 {{ t('ALERT_RELEASE_DATE') }}
               </th>
               <td mat-cell *matCellDef="let element">
@@ -960,7 +960,7 @@
 
             <!-- Relatedcontractnumber Column -->
             <ng-container matColumnDef="Relatedcontractnumber">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Relatedcontractnumber">
                 {{ t('RELATE_CONTRACT_NUMBER') }}
               </th>
               <td mat-cell *matCellDef="let element">
@@ -970,7 +970,7 @@
            
             <!-- Expecteddateofconsultion Column -->
             <ng-container matColumnDef="Expecteddateofconsultion">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Expecteddateofconsultion">
                 {{ t('CONC_OF_S_D') }}
               </th>
               <td mat-cell *matCellDef="let element">
@@ -980,7 +980,7 @@
 
              <!-- FIXContract Column -->
              <ng-container matColumnDef="FIXContract">
-              <th mat-header-cell *matHeaderCellDef>
+              <th mat-header-cell *matHeaderCellDef  mat-sort-header="FIXContract">
                 {{ t('FIXCONTRACT') }}
               </th>
               <td mat-cell *matCellDef="let element">
@@ -990,7 +990,7 @@
           
           <!-- Approvaldecisionnumber Column -->
           <ng-container matColumnDef="Approvaldecisionnumber">
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Approvaldecisionnumber">
               {{ t('APPROVAL_DECISION_NUMBER') }}
             </th>
             <td mat-cell *matCellDef="let element">
@@ -1000,7 +1000,7 @@
 
            <!-- Managementstatus Column -->
            <ng-container matColumnDef="Managementstatus">
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Managementstatus">
               {{ t('MANAGEMENT_STATE') }}
             </th>
             <td mat-cell *matCellDef="let element">
@@ -1010,7 +1010,7 @@
           
           <!-- Legaldepartmentreceptiondate Column -->
           <ng-container matColumnDef="Legaldepartmentreceptiondate">
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Legaldepartmentreceptiondate">
               {{ t('LDPD') }}
             </th>
             <td mat-cell *matCellDef="let element">
@@ -1019,7 +1019,7 @@
           </ng-container>
            <!-- Legaldepartmentresponsedeadline Column -->
            <ng-container matColumnDef="Legaldepartmentresponsedeadline">
-            <th mat-header-cell *matHeaderCellDef>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Legaldepartmentresponsedeadline">
               {{ t('LDRD') }}
             </th>
             <td mat-cell *matCellDef="let element">
@@ -1049,7 +1049,8 @@
                   mat-row
                   *matRowDef="let row; let odd = odd; columns: displayedColumns"
                   [ngClass]="{ gray: odd }"
-                ></tr>
+                >
+                </tr>
               </table>
             </div>
             <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
@@ -1405,10 +1406,11 @@
         style="margin-top: 10px;"
         >
         <div fxFlex="0 0 100%">
-          <mat-paginator
-            [pageSizeOptions]="[5, 10, 20]"
-            showFirstLastButtons
-          ></mat-paginator>
+          <mat-paginator [length]="length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent = $event">
+          </mat-paginator>
         </div>
         </div>
       </mat-card>

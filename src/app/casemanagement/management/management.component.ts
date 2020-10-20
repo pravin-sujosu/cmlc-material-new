@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatSort, Sort} from '@angular/material/sort';
 import {
   FormGroup,
   FormControl,
@@ -64,9 +65,9 @@ export const MY_FORMATS = {
 export class ManagementComponent implements OnInit, AfterViewInit, OnDestroy {
   caseform: FormGroup;
   // MatPaginator Inputs
-  //  length = 11;
-  //  pageSize = 5;
-  //  pageSizeOptions: number[] = [5, 10, 25, 100];
+   length = 25 ;
+   pageSize = 5;
+   pageSizeOptions: number[] = [5, 10, 25];
   //   // MatPaginator Output
   //  pageEvent: PageEvent;
 
@@ -105,21 +106,77 @@ export class ManagementComponent implements OnInit, AfterViewInit, OnDestroy {
     'Legaldepartmentresponsedeadline'
   ];
   dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA);
-
+  sortedData: CaseMangElement[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+   
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    }
+  }
   private mediaSub: Subscription;
   constructor(
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
     private transloco: TranslocoService
-  ) {}
+  ) {
+    this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice());
+    console.log('dataSource',  this.dataSource);
+  }
+ 
+  sortData(sort: Sort) {
+    // const data = ELEMENT_DATA.slice();
+    console.log('dataSource1', new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice()));
+    if (!sort.active || sort.direction === '') {
+      // this.sortedData = data;
+      this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.slice());
+      return;
+    }
 
-  // setPageSizeOptions(setPageSizeOptionsInput: string) {
-  //   if (setPageSizeOptionsInput) {
-  //     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  //   }
-  // }
+    this.dataSource = new MatTableDataSource<CaseMangElement>(ELEMENT_DATA.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Controlnumber': return compare(a.Controlnumber, b.Controlnumber, isAsc);
+        case 'BranchNumber': return compare(a.BranchNumber, b.BranchNumber, isAsc);
+        case 'ApplicationDate': return compare(a.ApplicationDate, b.ApplicationDate, isAsc);
+        case 'Status': return compare(a.Status, b.Status, isAsc);
+        case 'ContractName': return compare(a.ContractName, b.ContractName, isAsc);
+        case 'OtherParty': return compare(a.OtherParty, b.OtherParty, isAsc);
+
+        case 'Applicantdivision': return compare(a.Applicantdivision, b.Applicantdivision, isAsc);
+        case 'Applicationdepartment': return compare(a.Applicationdepartment, b.Applicationdepartment, isAsc);
+        case 'Applicant': return compare(a.Applicant, b.Applicant, isAsc);
+        case 'LegalRepresentative': return compare(a.LegalRepresentative, b.LegalRepresentative, isAsc);
+        case 'Contractperiod': return compare(a.Contractperiod, b.Contractperiod, isAsc);
+        case 'Contractperiodend': return compare(a.Contractperiodend, b.Contractperiodend, isAsc);
+
+        case 'Automaticupdate': return compare(a.Automaticupdate, b.Automaticupdate, isAsc);
+        case 'Relatedcountries': return compare(a.Relatedcountries, b.Relatedcountries, isAsc);
+        case 'ProjectName': return compare(a.ProjectName, b.ProjectName, isAsc);
+        case 'ContractType': return compare(a.ContractType, b.ContractType, isAsc);
+        case 'Externalconsultation': return compare(a.Externalconsultation, b.Externalconsultation, isAsc);
+        case 'Contracteditem': return compare(a.Contracteditem, b.Contracteditem, isAsc);
+
+        case 'Newongoing': return compare(a.Newongoing, b.Newongoing, isAsc);
+        case 'Alertreleasedate': return compare(a.Alertreleasedate, b.Alertreleasedate, isAsc);
+        case 'Relatedcontractnumber': return compare(a.Relatedcontractnumber, b.Relatedcontractnumber, isAsc);
+        case 'Expecteddateofconsultion': return compare(a.Expecteddateofconsultion, b.Expecteddateofconsultion, isAsc);
+        case 'FIXContract': return compare(a.FIXContract, b.FIXContract, isAsc);
+        case 'Approvaldecisionnumber': return compare(a.Approvaldecisionnumber, b.Approvaldecisionnumber, isAsc);
+        case 'Managementstatus': return compare(a.Managementstatus, b.Managementstatus, isAsc);
+        case 'Legaldepartmentreceptiondate': return compare(a.Legaldepartmentreceptiondate, b.Legaldepartmentreceptiondate, isAsc);
+        case 'Legaldepartmentresponsedeadline': return compare(a.Legaldepartmentresponsedeadline, b.Legaldepartmentresponsedeadline, isAsc);
+
+        default: return 0;
+      }
+    }));
+    this.dataSource.paginator = this.paginator;
+    // this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    //this.paginator.pageIndex = 0
+  }
+
+ 
   setActiveLang(lang: string) {
     this.transloco.setActiveLang(lang);
   }
@@ -212,6 +269,7 @@ export class ManagementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
+ 
   }
 
   ngOnDestroy() {
@@ -497,3 +555,8 @@ const ELEMENT_DATA: CaseMangElement[] = [
   
 
 ];
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  console.log('sorted data', (a < b ? -1 : 1) * (isAsc ? 1 : -1));
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
