@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Meta, SafeHtml, Title } from '@angular/platform-browser';
 import {
   FormGroup,
   FormControl,
@@ -101,7 +102,8 @@ export class LegalComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
-    private transloco: TranslocoService
+    private transloco: TranslocoService,
+    private title: Title
   ) {}
 
   // setPageSizeOptions(setPageSizeOptionsInput: string) {
@@ -114,6 +116,19 @@ export class LegalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   othercountry (otherselected: boolean) {
     otherselected ? this.ifothercountry=true:this.ifothercountry=false;
+  }
+  printPage() {
+    // console.log("active lang", this.translocoService.getActiveLang());
+    if(this.transloco.getActiveLang() === 'jp'){
+      const title = '案件名 ' + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '管理番号'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請日'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請事業部'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請部署'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請者'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '法務部受付日';
+      this.title.setTitle(title);
+      window.print();
+    } else {
+      const title = 'Project Name ' + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Control Number'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Date'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Division'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Department'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Applicant'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Legal Department Reception Date';
+    this.title.setTitle(title);
+    window.print();
+    }
+    this.title.setTitle('CMLC');
   }
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;

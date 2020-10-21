@@ -14,7 +14,7 @@
               <button mat-button><mat-icon>cloud_done</mat-icon> {{ t('SAVE') }}</button>
               <button mat-button><mat-icon>done_all</mat-icon> {{ t('SUBMIT') }}</button>
               <button mat-button><mat-icon>redo</mat-icon> {{ t('RESET') }}</button>
-              <button mat-button>
+              <button mat-button (click)="printPage()" type="button">
                 <mat-icon>local_printshop</mat-icon> {{ t('PRINT') }}
               </button>
               <button mat-button>
@@ -52,12 +52,14 @@
         fxLayoutAlign.gt-sm="space-around center"
         style="text-align: center; margin-bottom: 20px;"
         fxHide.gt-sm
+        class="langonmobile"
       >
         <div fxFlex="0 0 100%">
           <mat-button-toggle-group
             name="fontStyle"
             aria-label="Font Style"
             style="margin-right: 5px;"
+            
           >
             <mat-button-toggle value="en" (click)="setActiveLang('en')"
               >EN</mat-button-toggle

@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Meta, SafeHtml, Title } from '@angular/platform-browser';
 import {
   FormGroup,
   FormControl,
@@ -109,9 +110,26 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     private mediaObserver: MediaObserver,
     private formBuilder: FormBuilder,
-    private transloco: TranslocoService
-  ) {}
+    private transloco: TranslocoService,
+    private title: Title,
+    private translocoService: TranslocoService
+  ) {
+    
+  }
 
+  printPage() {
+    // console.log("active lang", this.translocoService.getActiveLang());
+    if(this.translocoService.getActiveLang() === 'jp'){
+      const title = '案件名 ' + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '管理番号'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請日'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請事業部'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請部署'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '申請者'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + '法務部受付日';
+      this.title.setTitle(title);
+      window.print();
+    } else {
+      const title = 'Project Name ' + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Control Number'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Date'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Division'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Application Department'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Applicant'+ '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + 'Legal Department Reception Date';
+    this.title.setTitle(title);
+    window.print();
+    }
+    this.title.setTitle('CMLC');
+  }
   // setPageSizeOptions(setPageSizeOptionsInput: string) {
   //   if (setPageSizeOptionsInput) {
   //     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
@@ -172,9 +190,8 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     //   this.showdeletebtn = false;
     // }
   }
-  setStep (aa) {
-    
-  }
+
+  setStep (aa) { }
   ngOnInit() {
     // this.length = ELEMENT_DATA.length;
     this.contractcontentform = this.formBuilder.group({
