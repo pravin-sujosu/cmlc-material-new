@@ -1,0 +1,1395 @@
+<div class="container-fluid">
+  <!-- <div class="image-header">
+    <img src="http://www.icloud8.net/cmlc/images/logo.png" alt="" />
+  </div> -->
+  <form [formGroup]="caseform" autocomplete="off" (ngSubmit)="onSubmit()" style="margin-top: 50px;">
+    <mat-card class="main casemag">
+      <ng-container *transloco="let t">
+        <mat-card-header>
+          <mat-card-title style="min-height: 40px; margin: 0;"
+            ><mat-icon>dashboard</mat-icon> Case Management List
+          </mat-card-title>
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px;"
+            fxHide.lt-md
+            class="langgroup"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            > </mat-button-toggle-group
+          ><button mat-raised-button color="accent" type="button" style="margin-right: 5px;">
+            <mat-icon>cloud_download</mat-icon> 
+            <span fxHide.lt-md>{{ t('CSV_CREATE') }}</span>
+          </button> <button mat-raised-button color="accent" type="submit">
+            <mat-icon>search</mat-icon>
+            <span fxHide.lt-md>{{ t('SEARCH') }}</span>
+          </button>
+        </mat-card-header>
+       
+      </ng-container>
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around center"
+        style="text-align: center; margin-bottom: 20px;"
+        fxHide.gt-sm
+      >
+        <div fxFlex="0 0 100%">
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            style="margin-right: 5px;"
+          >
+            <mat-button-toggle value="en" (click)="setActiveLang('en')"
+              >EN</mat-button-toggle
+            >
+            <mat-button-toggle value="jp" (click)="setActiveLang('jp')"
+              >JP</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CLASSIF') }}*</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select formControlName="classification">
+                <mat-option value="{{ t('C_MGMT') }}">{{
+                  t('C_MGMT')
+                }}</mat-option>
+                <mat-option value="{{ t('Legal_C_M') }}">{{
+                  t('Legal_C_M')
+                }}</mat-option>
+                <mat-option value="{{ t('LEGAL_BOTH') }}">{{
+                  t('LEGAL_BOTH')
+                }}</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  caseform.get('classification').errors &&
+                  caseform.get('classification').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CONTITEM') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="controlnumber" />
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('LDPD') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+         
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('APPL_DATE') }}*</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="appdate"
+                formControlName="appdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="appdate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #appdate></mat-datepicker>
+              <mat-error
+                *ngIf="
+                  caseform.get('appdate').errors &&
+                  !caseform.get('appdate').errors.matDatepickerParse &&
+                  caseform.get('appdate').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  caseform.get('appdate').errors &&
+                  caseform.get('appdate').errors.matDatepickerParse
+                "
+                >Please enter a valid date</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('APPLICANT') }}*</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="applicant" />
+              <mat-error
+                *ngIf="
+                  caseform.get('applicant').errors &&
+                  caseform.get('applicant').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+            <div class="button-row">
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                class="gradient-primary"
+              >
+                <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
+              </button>
+              <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                class="gradient-warn"
+              >
+                <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
+              </button>
+            </div>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CONTRACT_NAME') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="applicant" />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+ 
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+         
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CONTRACT_ITEM') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="contracteditem" />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('SECTION_MEMBER') }}*</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-checkbox
+              (change)="show_inc_app_sec($event)"
+              class="chk-margin"
+              formControlName="inc_app_sec_memberyes"
+              >{{ t('TRUE') }}</mat-checkbox
+            >
+            <mat-checkbox
+              (change)="show_inc_app_sec($event)"
+              class="chk-margin"
+              formControlName="inc_app_sec_memberno"
+              >{{ t('FALSE') }}</mat-checkbox
+            >
+            <mat-error class="incerror" *ngIf="inc_app_sec_member_error"
+              >Select atleast one</mat-error
+            >
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('NEW_RENEWAL') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select formControlName="new_renew" name="new_renew">
+                <mat-option value="new">{{ t('NEW') }}</mat-option>
+                <mat-option value="renewal">{{ t('RENEWAL') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </ng-container>
+    
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('AUTOMATIC_UPDATE') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select formControlName="autoupdate" name="autoupdate">
+                <mat-option value="yes">{{ t('YES') }}</mat-option>
+                <mat-option value="no">{{ t('NO') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CONTRACT_TYPE') }}*</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select formControlName="contracttype">
+                <mat-option value="dummy1">Dummy text</mat-option>
+                <mat-option value="dummy2">Renewal</mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  caseform.get('contracttype').errors &&
+                  caseform.get('contracttype').errors.required
+                "
+                >Please fill up the field</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('CONTRACTOR') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" formControlName="contractor" />
+            </mat-form-field>
+            <div class="button-row">
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                class="gradient-primary"
+              >
+                <mat-icon>link</mat-icon> {{ t('REFERENCE') }}
+              </button>
+              <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                class="gradient-warn"
+              >
+                <mat-icon>clear</mat-icon> {{ t('CLEAR') }}
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+         
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('BEGINNING_DATE_OF_THE_CONTRACT') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="begcontperiod"
+                formControlName="begcontperiod"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="begcontperiod"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #begcontperiod></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('END_DATE_OF_THE_CONTRACT') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="endcontperiod"
+                formControlName="endcontperiod"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="endcontperiod"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #endcontperiod></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('LEGAL_REPRESENTATIVE') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select formControlName="legelrep" name="legelrep">
+                <mat-option value="yes">{{ t('YES') }}</mat-option>
+                <mat-option value="no">{{ t('NO') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </ng-container>
+
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('FIX_VERSION_CONTRACT_ATTACHED') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select
+                formControlName="fix_ver_contract_att"
+                name="fix_ver_contract_att"
+              >
+                <mat-option value="yes">{{ t('YES') }}</mat-option>
+                <mat-option value="no">{{ t('NO') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('EXSISTANCE_OF_THE_EXTERNAL_CONSULTANT') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <mat-select
+                formControlName="exsist_extr_consult"
+                name="exsist_extr_consult"
+              >
+                <mat-option value="yes">{{ t('YES') }}</mat-option>
+                <mat-option value="no">{{ t('NO') }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('LEGAL_DEPARTMENT_NOTES') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder=""
+                formControlName="legel_dept_notes"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around center"
+        >
+         
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('PNAME') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input matInput placeholder="" />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('EXP_DATE_CONC') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate1"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <label>{{ t('ALERT_RELEASE_DATE') }}</label>
+          </div>
+          <div fxFlex="0 0 16.66%">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="recpdate2"
+                formControlName="recpdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="recpdate2"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #recpdate2></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </ng-container>
+
+    <ng-container *transloco="let t">
+      <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around center"
+      >
+        <div fxFlex="0 0 25%">
+          <label>{{ t('APPROVAL_DECISION_NUMBER') }}</label>
+        </div>
+        <div fxFlex="0 0 25%">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder=""
+              formControlName="legel_dept_notes"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="0 0 25%">
+          <label>{{ t('BRANCH_NUMBER') }}</label>
+        </div>
+        <div fxFlex="0 0 25%">
+          <mat-form-field>
+            <input matInput placeholder="" />
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign.gt-sm="space-around start"
+          class="statusmargin"
+        >
+          <div fxFlex="0 0 25%">
+            <label>{{ t('STATUS') }}</label>
+          </div>
+          <div fxFlex="0 0 75%">
+            <mat-checkbox formControlName="status_creating">{{
+              t('CREATING')
+            }}</mat-checkbox
+            >      
+            <mat-checkbox formControlName="status_receiving">{{
+              t('RECEIVING')
+            }}</mat-checkbox
+            >    
+            <mat-checkbox formControlName="status_app_responding">{{
+              t('APP_RESPOND')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_contract_signed">{{
+              t('CONTRACT_SIGN')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_cancelled">{{
+              t('CANCELLED')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_requesting">{{
+              t('REQUESTING')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_correspond_legl_dept">{{
+              t('CTLDEPT')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_resp_legl_dept">{{
+              t('RTLDEPT')
+            }}</mat-checkbox
+            >
+            <mat-checkbox formControlName="status_completed">{{
+              t('COMPLETED')
+            }}</mat-checkbox
+            >
+          </div>
+
+          <!-- <div fxFlex="0 0 50%">
+            <mat-checkbox formControlName="status_requesting">{{
+              t('REQUESTING')
+            }}</mat-checkbox
+            ><br />
+            <mat-checkbox formControlName="status_correspond_legl_dept">{{
+              t('CTLDEPT')
+            }}</mat-checkbox
+            ><br />
+            <mat-checkbox formControlName="status_resp_legl_dept">{{
+              t('RTLDEPT')
+            }}</mat-checkbox
+            ><br />
+            <mat-checkbox formControlName="status_completed">{{
+              t('COMPLETED')
+            }}</mat-checkbox
+            ><br />
+          </div> -->
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign.gt-sm="space-around start"
+        style="margin-top: 20px;"
+      >
+        <div fxFlex="0 0 25%">
+          <label>{{ t('RELATED_COUNTRIES') }} </label>
+        </div>
+        <div fxFlex="0 0 75%">
+          <mat-checkbox class="country-margin" formControlName="country_korea">{{
+            t('JAPAN')
+          }}</mat-checkbox>
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_china"
+            >{{ t('US') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_korea"
+            >{{ t('CHINA') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_europe"
+            >{{ t('TAIWAN') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_tiwan"
+            >{{ t('INDIA') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_india"
+            >{{ t('EUROPE') }}</mat-checkbox
+          >
+          <mat-checkbox
+            class="country-margin"
+            formControlName="country_others"
+            >{{ t('OTHERS') }}</mat-checkbox
+          >
+        </div>
+
+       
+      </div>
+      </ng-container>
+      <ng-container *transloco="let t">
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-around center"
+          style="margin-top: 10px;"
+        >
+          <div fxFlex="0 0 100%">
+            <button mat-raised-button color="accent">
+              <mat-icon>search</mat-icon> {{ t('SEARCH') }}
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <mat-card class="dataset">
+        <div class="card-icon">
+          Case Management List
+        </div>
+        <ng-container *transloco="let t">
+          <div
+            fxLayout="row wrap"
+            fxLayout.xs="column"
+            fxLayoutAlign="space-around center"
+            style="margin-top: 10px;"
+          >
+            <div fxFlex="0 0 100%" fxLayoutAlign="end center" class="margintop">
+              <div class="onmobile">
+                <span
+                  >{{ t('THE_TOALNOFC') }}:
+                  <mat-chip color="primary" selected>11</mat-chip></span
+                >
+                <!-- <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  class="gradient-success mr-1"
+                >
+                  <mat-icon>cloud_download</mat-icon> {{ t('CSV_CREATE') }}
+                </button>
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  class="gradient-indigo"
+                >
+                  <mat-icon>print</mat-icon> {{ t('PRINT') }}
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-around center"
+          style="margin-top: 10px;"
+          fxHide.lt-md
+          class="only-desktop"
+          *transloco="let t"
+        >
+          <div fxFlex="0 0 100%">
+            <div class="datatable-container mat-elevation-z1">
+              <table mat-table [dataSource]="dataSource" class="casetable"  matSort (matSortChange)="sortData($event)">
+                <!-- Controlnumber Column -->
+
+                <ng-container
+                  matColumnDef="Controlnumber"
+                  sticky
+                  *transloco="let t"
+                >
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Controlnumber">
+                    {{ t('CONTROL_NUMBER') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.Controlnumber }}
+                  </td>
+                </ng-container>
+
+                <!-- BranchNumber Column -->
+                <ng-container matColumnDef="BranchNumber" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="BranchNumber">
+                    {{ t('BRANCH_NUMBER') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.BranchNumber }}
+                  </td>
+                </ng-container>
+
+                <!-- ApplicationDate Column -->
+                <!-- <ng-container matColumnDef="ApplicationDate" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                    {{ t('APPL_DATE') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    <mat-chip-list aria-label="ApplicationDate">
+                      <mat-chip color="accent" selected class="chipred"
+                        >{{ element.ApplicationDate }}
+                      </mat-chip>
+                    </mat-chip-list>
+                  </td>
+                </ng-container> -->
+
+                <!-- Applicant Column -->
+                <!-- <ng-container matColumnDef="Applicant" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                    {{ t('APPLICANT') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.Applicant }}
+                  </td>
+                </ng-container> -->
+
+                <!-- ApplicationDate Column -->
+                <ng-container matColumnDef="ApplicationDate" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="ApplicationDate">
+                    {{ t('APPL_DATE') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.ApplicationDate }}
+                  </td>
+                </ng-container>
+
+                     <!-- Status Column -->
+                     <ng-container matColumnDef="Status" sticky>
+                      <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="ContractName">{{ t('STATUS') }}</th>
+                      <td mat-cell *matCellDef="let element" style="width: 40px;">
+                        {{ element.Status }}
+                      </td>
+                    </ng-container>
+
+                <!-- ContractName Column -->
+                <ng-container matColumnDef="ContractName" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Status">
+                    {{ t('CONTRACT_NAME') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    <span *ngIf="element.BranchNumber != 3 && element.BranchNumber != 4">{{element.ContractName}}</span>
+                    <div
+                      class="popover__wrapper"
+                      *ngIf="
+                        element.BranchNumber == 3 || element.BranchNumber == 4
+                      "
+                    >
+                      <a href="#">
+                        <h2 class="popover__title">
+                          {{ element.ContractName }}...<mat-icon class="iconfix"
+                            >screen_share</mat-icon
+                          >
+                        </h2>
+                      </a>
+                      <div class="popover__content">
+                        <p class="popover__message">Dummy Text</p>
+                        <p>
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <!-- otherparty Column -->
+                <ng-container matColumnDef="OtherParty" sticky>
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="OtherParty">
+                    {{ t('OTHER_PARTY') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.OtherParty }}
+                  </td>
+                </ng-container>
+
+                <!-- Applicantdivision Column -->
+                <ng-container matColumnDef="Applicantdivision" >
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Applicantdivision">
+                    {{ t('APP_DIVI') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.Applicantdivision }}
+                  </td>
+                </ng-container> 
+
+                <!-- Applicationdepartment Column -->
+                <ng-container matColumnDef="Applicationdepartment">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Applicationdepartment">
+                    {{ t('APPLY_F_DEPT') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Applicationdepartment }}
+                  </td>
+                </ng-container>
+                <!-- Applicant Column -->
+                <ng-container matColumnDef="Applicant">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Applicant">
+                    {{ t('APPLICANT') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Applicant }}
+                  </td>
+                </ng-container>
+
+                <!-- LegalRepresentative Column -->
+                <ng-container matColumnDef="LegalRepresentative">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="LegalRepresentative">
+                    {{ t('LEGAL_REPRESENTATIVE') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.LegalRepresentative }}
+                  </td>
+                </ng-container>
+
+           
+
+                <!-- Contractperiod Column -->
+                <ng-container matColumnDef="Contractperiod">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Contractperiod">
+                    {{ t('CONT_PERIOD') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element" >
+                    {{ element.Contractperiod }}
+                  </td>
+                </ng-container>
+
+                <!-- Contractperiodend Column -->
+                <ng-container matColumnDef="Contractperiodend">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="Contractperiodend">
+                    {{ t('CONT_PERIOD_END') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Contractperiodend }}
+                  </td>
+                </ng-container>
+                  <!-- Automaticupdate Column -->
+                  <ng-container matColumnDef="Automaticupdate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="Automaticupdate">
+                      {{ t('AUTOMATIC_UPDATE') }}
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.Automaticupdate }}
+                    </td>
+                  </ng-container>
+                  
+              
+              <!-- Relatedcountries Column -->
+               <ng-container matColumnDef="Relatedcountries">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="Relatedcountries">
+                  {{ t('RELATED_COUNTRIES') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Relatedcountries }}
+                </td>
+              </ng-container>
+
+               <!-- ProjectName Column -->
+               <ng-container matColumnDef="ProjectName">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header="ProjectName">
+                  {{ t('PNAME') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.ProjectName }}
+                </td>
+              </ng-container>
+
+               <!-- ContractType Column -->
+               <ng-container matColumnDef="ContractType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="ContractType">
+                  {{ t('CONTRACT_TYPE') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.ContractType }}
+                </td>
+              </ng-container>
+              
+              <!-- Externalconsultation Column -->
+              <ng-container matColumnDef="Externalconsultation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Externalconsultation">
+                  {{ t('EXTCONSULTANT') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Externalconsultation }}
+                </td>
+              </ng-container>
+
+               <!-- Contracteditem Column -->
+               <ng-container matColumnDef="Contracteditem">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Contracteditem">
+                  {{ t('CONTITEM') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Contracteditem }}
+                </td>
+              </ng-container>
+             
+              <!-- Newongoing Column -->
+              <ng-container matColumnDef="Newongoing">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header="Newongoing">
+                  {{ t('NEWONGOING') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Newongoing }}
+                </td>
+              </ng-container>
+            
+            <!-- Alertreleasedate Column -->
+             <ng-container matColumnDef="Alertreleasedate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Alertreleasedate">
+                {{ t('ALERT_RELEASE_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Alertreleasedate }}
+              </td>
+            </ng-container>
+
+            <!-- Relatedcontractnumber Column -->
+            <ng-container matColumnDef="Relatedcontractnumber">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Relatedcontractnumber">
+                {{ t('RELATE_CONTRACT_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Relatedcontractnumber }}
+              </td>
+            </ng-container>
+           
+            <!-- Expecteddateofconsultion Column -->
+            <ng-container matColumnDef="Expecteddateofconsultion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="Expecteddateofconsultion">
+                {{ t('CONC_OF_S_D') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Expecteddateofconsultion }}
+              </td>
+            </ng-container>
+
+             <!-- FIXContract Column -->
+             <ng-container matColumnDef="FIXContract">
+              <th mat-header-cell *matHeaderCellDef  mat-sort-header="FIXContract">
+                {{ t('FIXCONTRACT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.FIXContract }}
+              </td>
+            </ng-container>
+          
+          <!-- Approvaldecisionnumber Column -->
+          <ng-container matColumnDef="Approvaldecisionnumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Approvaldecisionnumber">
+              {{ t('APPROVAL_DECISION_NUMBER') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Approvaldecisionnumber }}
+            </td>
+          </ng-container>
+
+           <!-- Managementstatus Column -->
+           <ng-container matColumnDef="Managementstatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Managementstatus">
+              {{ t('MANAGEMENT_STATE') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Managementstatus }}
+            </td>
+          </ng-container>
+          
+          <!-- Legaldepartmentreceptiondate Column -->
+          <ng-container matColumnDef="Legaldepartmentreceptiondate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Legaldepartmentreceptiondate">
+              {{ t('LDPD') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Legaldepartmentreceptiondate }}
+            </td>
+          </ng-container>
+           <!-- Legaldepartmentresponsedeadline Column -->
+           <ng-container matColumnDef="Legaldepartmentresponsedeadline">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Legaldepartmentresponsedeadline">
+              {{ t('LDRD') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Legaldepartmentresponsedeadline }}
+            </td>
+          </ng-container>
+                <!-- Remarks Column -->
+                <!-- <ng-container matColumnDef="Remarks">
+                  <th mat-header-cell *matHeaderCellDef>{{ t('REMARKS') }}</th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.Remarks }}
+                  </td>
+                </ng-container> -->
+
+                <!-- SecurityCaseClassification Column -->
+                <!-- <ng-container matColumnDef="SecurityCaseClassification">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ t('SEC_CASE_CLASSIF') }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ element.SecurityCaseClassification }}
+                  </td>
+                </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; let odd = odd; columns: displayedColumns"
+                  [ngClass]="{ gray: odd }"
+                >
+                </tr>
+              </table>
+            </div>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+          </div>
+        </div>
+        <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        style="margin-top: 10px;"
+        fxHide.gt-sm
+        class="only-mobile"
+        *transloco="let t"
+        >
+        <div fxFlex="0 0 100%">
+          <div class="datatable-container mat-elevation-z1">
+            <table mat-table [dataSource]="dataSource" class="casetable">
+              <!-- Controlnumber Column -->
+        
+              <ng-container
+              matColumnDef="Controlnumber"
+              
+              *transloco="let t"
+            >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('CONTROL_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Controlnumber }}
+              </td>
+            </ng-container>
+        
+            <!-- BranchNumber Column -->
+            <ng-container matColumnDef="BranchNumber" >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('BRANCH_NUMBER') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.BranchNumber }}
+              </td>
+            </ng-container>
+        
+            <!-- ApplicationDate Column -->
+            <!-- <ng-container matColumnDef="ApplicationDate" sticky>
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPL_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                <mat-chip-list aria-label="ApplicationDate">
+                  <mat-chip color="accent" selected class="chipred"
+                    >{{ element.ApplicationDate }}
+                  </mat-chip>
+                </mat-chip-list>
+              </td>
+            </ng-container> -->
+        
+            <!-- Applicant Column -->
+            <!-- <ng-container matColumnDef="Applicant" sticky>
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPLICANT') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Applicant }}
+              </td>
+            </ng-container> -->
+        
+            <!-- ApplicationDate Column -->
+            <ng-container matColumnDef="ApplicationDate">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APPL_DATE') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.ApplicationDate }}
+              </td>
+            </ng-container>
+        
+                 <!-- Status Column -->
+                 <ng-container matColumnDef="Status">
+                  <th mat-header-cell *matHeaderCellDef style="width: 40px;">{{ t('STATUS') }}</th>
+                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                    {{ element.Status }}
+                  </td>
+                </ng-container>
+        
+            <!-- ContractName Column -->
+            <ng-container matColumnDef="ContractName">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('CONTRACT_NAME') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                <span *ngIf="element.BranchNumber != 3 && element.BranchNumber != 4">{{element.ContractName}}</span>
+                <div
+                  class="popover__wrapper"
+                  *ngIf="
+                    element.BranchNumber == 3 || element.BranchNumber == 4
+                  "
+                >
+                  <a href="#">
+                    <h2 class="popover__title">
+                      {{ element.ContractName }}...<mat-icon class="iconfix"
+                        >screen_share</mat-icon
+                      >
+                    </h2>
+                  </a>
+                  <div class="popover__content">
+                    <p class="popover__message">Dummy Text</p>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the
+                      industry's standard dummy text ever since the 1500s.
+                    </p>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+        
+            <!-- otherparty Column -->
+            <ng-container matColumnDef="OtherParty">
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('OTHER_PARTY') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.OtherParty }}
+              </td>
+            </ng-container>
+        
+            <!-- Applicantdivision Column -->
+            <ng-container matColumnDef="Applicantdivision" >
+              <th mat-header-cell *matHeaderCellDef style="width: 40px;">
+                {{ t('APP_DIVI') }}
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 40px;">
+                {{ element.Applicantdivision }}
+              </td>
+            </ng-container> 
+        
+            <!-- Applicationdepartment Column -->
+            <ng-container matColumnDef="Applicationdepartment">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('APPLY_F_DEPT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Applicationdepartment }}
+              </td>
+            </ng-container>
+            <!-- Applicant Column -->
+            <ng-container matColumnDef="Applicant">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('APPLICANT') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Applicant }}
+              </td>
+            </ng-container>
+        
+            <!-- LegalRepresentative Column -->
+            <ng-container matColumnDef="LegalRepresentative">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('LEGAL_REPRESENTATIVE') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.LegalRepresentative }}
+              </td>
+            </ng-container>
+        
+        
+        
+            <!-- Contractperiod Column -->
+            <ng-container matColumnDef="Contractperiod">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('CONT_PERIOD') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Contractperiod }}
+              </td>
+            </ng-container>
+        
+            <!-- Contractperiodend Column -->
+            <ng-container matColumnDef="Contractperiodend">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ t('CONT_PERIOD_END') }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.Contractperiodend }}
+              </td>
+            </ng-container>
+              <!-- Automaticupdate Column -->
+              <ng-container matColumnDef="Automaticupdate">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ t('AUTOMATIC_UPDATE') }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.Automaticupdate }}
+                </td>
+              </ng-container>
+              
+          
+          <!-- Relatedcountries Column -->
+           <ng-container matColumnDef="Relatedcountries">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('RELATED_COUNTRIES') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Relatedcountries }}
+            </td>
+          </ng-container>
+        
+           <!-- ProjectName Column -->
+           <ng-container matColumnDef="ProjectName">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('PNAME') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.ProjectName }}
+            </td>
+          </ng-container>
+        
+           <!-- ContractType Column -->
+           <ng-container matColumnDef="ContractType">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('CONTRACT_TYPE') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.ContractType }}
+            </td>
+          </ng-container>
+          
+          <!-- Externalconsultation Column -->
+          <ng-container matColumnDef="Externalconsultation">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('EXTCONSULTANT') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Externalconsultation }}
+            </td>
+          </ng-container>
+        
+           <!-- Contracteditem Column -->
+           <ng-container matColumnDef="Contracteditem">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('CONTITEM') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Contracteditem }}
+            </td>
+          </ng-container>
+         
+          <!-- Newongoing Column -->
+          <ng-container matColumnDef="Newongoing">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ t('NEWONGOING') }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.Newongoing }}
+            </td>
+          </ng-container>
+        
+        <!-- Alertreleasedate Column -->
+         <ng-container matColumnDef="Alertreleasedate">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('ALERT_RELEASE_DATE') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Alertreleasedate }}
+          </td>
+        </ng-container>
+        
+        <!-- Relatedcontractnumber Column -->
+        <ng-container matColumnDef="Relatedcontractnumber">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('RELATE_CONTRACT_NUMBER') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Relatedcontractnumber }}
+          </td>
+        </ng-container>
+        
+        <!-- Expecteddateofconsultion Column -->
+        <ng-container matColumnDef="Expecteddateofconsultion">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('CONC_OF_S_D') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.Expecteddateofconsultion }}
+          </td>
+        </ng-container>
+        
+         <!-- FIXContract Column -->
+         <ng-container matColumnDef="FIXContract">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ t('FIXCONTRACT') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.FIXContract }}
+          </td>
+        </ng-container>
+        
+        <!-- Approvaldecisionnumber Column -->
+        <ng-container matColumnDef="Approvaldecisionnumber">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('APPROVAL_DECISION_NUMBER') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Approvaldecisionnumber }}
+        </td>
+        </ng-container>
+        
+        <!-- Managementstatus Column -->
+        <ng-container matColumnDef="Managementstatus">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('MANAGEMENT_STATE') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Managementstatus }}
+        </td>
+        </ng-container>
+        
+        <!-- Legaldepartmentreceptiondate Column -->
+        <ng-container matColumnDef="Legaldepartmentreceptiondate">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('LDPD') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Legaldepartmentreceptiondate }}
+        </td>
+        </ng-container>
+        <!-- Legaldepartmentresponsedeadline Column -->
+        <ng-container matColumnDef="Legaldepartmentresponsedeadline">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ t('LDRD') }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Legaldepartmentresponsedeadline }}
+        </td>
+        </ng-container>
+        
+        
+          
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; let odd = odd; columns: displayedColumns"
+                [ngClass]="{ gray: odd }"
+              ></tr>
+            </table>
+          </div>
+        </div>
+        </div>
+        <div
+        fxLayout="row wrap"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-around center"
+        style="margin-top: 10px;"
+        >
+        <div fxFlex="0 0 100%">
+          <mat-paginator [length]="length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent = $event">
+          </mat-paginator>
+        </div>
+        </div>
+      </mat-card>
+    </mat-card>
+  </form>
+</div>

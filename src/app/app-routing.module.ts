@@ -17,6 +17,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'case-management1',
+    loadChildren: () =>
+      import('./casemanagement1/casemanagement1.module').then(
+        (m) => m.Casemanagement1Module
+      ),
+  },
+  {
+    path: 'case-management2',
+    loadChildren: () =>
+      import('./casemanagement2/casemanagement2.module').then(
+        (m) => m.Casemanagement2Module
+      ),
+  },
+  {
     path: 'legal-consultation',
     loadChildren: () =>
       import('./legal-consultation/legal-consultation.module').then(

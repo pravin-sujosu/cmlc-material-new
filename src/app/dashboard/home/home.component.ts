@@ -23,6 +23,12 @@ export class HomeComponent implements OnInit {
       case 'casemgmt':
         this.router.navigateByUrl('/case-management');
         break;
+      case 'casemgmt1':
+        this.router.navigateByUrl('/case-management1');
+        break;
+        case 'casemgmt2':
+          this.router.navigateByUrl('/case-management2');
+          break;
       case 'contactmgmt':
         this.router.navigateByUrl('/contact-management');
         break;
