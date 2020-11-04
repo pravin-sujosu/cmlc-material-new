@@ -664,10 +664,19 @@
                         <mat-checkbox
                         class="country-margin"
                         formControlName="country_others"
-                        >{{ t('OTHERS') }}</mat-checkbox
-                        ><br />
+                        (change)="othercountry($event.checked)" >{{ t('OTHERS') }}</mat-checkbox
+                        >
+                        <mat-form-field *ngIf="ifothercountry">
+                          <input
+                            matInput
+                            placeholder=""
+                         
+                          />
+                        </mat-form-field>
+                        <br />
                         </div>
                         </div>
+                      
                             </mat-tab>
      
            

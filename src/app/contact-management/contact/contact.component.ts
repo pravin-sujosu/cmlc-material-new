@@ -104,7 +104,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   donshowdynfrmonload=true;
   seltab = 0;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  ifothercountry = false;
   private mediaSub: Subscription;
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -129,6 +129,10 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
     window.print();
     }
     this.title.setTitle('CMLC');
+  }
+  othercountry (otherselected: boolean) {
+    console.log("okkkkk");
+    otherselected ? this.ifothercountry=true:this.ifothercountry=false;
   }
   // setPageSizeOptions(setPageSizeOptionsInput: string) {
   //   if (setPageSizeOptionsInput) {

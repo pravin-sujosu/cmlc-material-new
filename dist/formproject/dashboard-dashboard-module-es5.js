@@ -7,7 +7,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n    <div class=\"image-header\">\n      <img src=\"http://www.icloud8.net/cmlc/images/logo.png\" alt=\"\" />\n    </div>\n    <mat-card class=\"main casemag\" style=\"width: 579px; margin: 110px auto\">\n\n          <mat-card-header>\n            <mat-card-title style=\"min-height: 40px; margin: 0;\"\n              ><mat-icon>dashboard</mat-icon> Form Links\n            </mat-card-title>\n      \n          </mat-card-header>\n          <mat-card-content>\n            <div class=\"example-button-row\">\n              <button mat-button color=\"accent\" (click)=\"gotopage('contactmgmt')\"><mat-icon>double_arrow</mat-icon> Contact Management</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('legalform')\"><mat-icon>double_arrow</mat-icon> Legal Form</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('accesslog')\"><mat-icon>double_arrow</mat-icon> Access Log</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt')\"><mat-icon>double_arrow</mat-icon> Case Management</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt1')\"><mat-icon>double_arrow</mat-icon> Case Management1</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt2')\"><mat-icon>double_arrow</mat-icon> Case Management2</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('postdata')\"><mat-icon>double_arrow</mat-icon> Post Data Acquisition</button>\n              </div>\n          </mat-card-content>\n          \n        </mat-card>\n</div>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n    <div class=\"image-header\">\n      <img src=\"http://www.icloud8.net/cmlc/images/logo.png\" alt=\"\" />\n    </div>\n    <mat-card class=\"main casemag\" style=\"width: 579px; margin: 110px auto\">\n\n          <mat-card-header>\n            <mat-card-title style=\"min-height: 40px; margin: 0;\"\n              ><mat-icon>dashboard</mat-icon> Form Links\n            </mat-card-title>\n      \n          </mat-card-header>\n          <mat-card-content>\n            <div class=\"example-button-row\">\n              <button mat-button color=\"accent\" (click)=\"gotopage('contactmgmt')\"><mat-icon>double_arrow</mat-icon> Contract Management</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('legalform')\"><mat-icon>double_arrow</mat-icon> Legal Consultation</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('accesslog')\"><mat-icon>double_arrow</mat-icon> Access Log</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt')\"><mat-icon>double_arrow</mat-icon> Case Management</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt1')\"><mat-icon>double_arrow</mat-icon> Case Management1</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt2')\"><mat-icon>double_arrow</mat-icon> Case Management2</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt3')\"><mat-icon>double_arrow</mat-icon> Case Management3</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('casemgmt4')\"><mat-icon>double_arrow</mat-icon> Case Management4</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('postdata')\"><mat-icon>double_arrow</mat-icon> Post Data Acquisition</button>\n                <button mat-button color=\"accent\" (click)=\"gotopage('postdatastatus')\"><mat-icon>double_arrow</mat-icon> CSV process status</button>\n              </div>\n          </mat-card-content>\n          \n        </mat-card>\n</div>\n");
             /***/ 
         }),
         /***/ "./src/app/dashboard/dashboard-routing.module.ts": 
@@ -120,11 +120,20 @@
                         case 'casemgmt2':
                             this.router.navigateByUrl('/case-management2');
                             break;
+                        case 'casemgmt3':
+                            this.router.navigateByUrl('/case-management3');
+                            break;
+                        case 'casemgmt4':
+                            this.router.navigateByUrl('/case-management4');
+                            break;
                         case 'contactmgmt':
                             this.router.navigateByUrl('/contact-management');
                             break;
                         case 'postdata':
                             this.router.navigateByUrl('/postdata');
+                            break;
+                        case 'postdatastatus':
+                            this.router.navigateByUrl('/postdatastatus');
                             break;
                         default:
                             break;

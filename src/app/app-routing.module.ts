@@ -31,6 +31,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'case-management3',
+    loadChildren: () =>
+      import('./casemanagement3/casemanagement3.module').then(
+        (m) => m.Casemanagement3Module
+      ),
+  },
+  {
+    path: 'case-management4',
+    loadChildren: () =>
+      import('./casemanagement4/casemanagement4.module').then(
+        (m) => m.Casemanagement4Module
+      ),
+  },
+  {
     path: 'legal-consultation',
     loadChildren: () =>
       import('./legal-consultation/legal-consultation.module').then(
@@ -58,6 +72,14 @@ const routes: Routes = [
         (m) => m.PostdataModule
       ),
   },
+  {
+    path: 'postdatastatus',
+    loadChildren: () =>
+      import('./postdatastatus/postdatastatus.module').then(
+        (m) => m.PostdatastatusModule
+      ),
+  },
+  
 ];
 
 @NgModule({

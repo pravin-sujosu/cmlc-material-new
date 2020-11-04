@@ -125,5 +125,18 @@
   "EXTCONSULTANT": "外部相談",
   "FIXCONTRACT": "FIX契約",
   "LDRD": "法務部門の対応期限",
-  "CONT_PERIOD_END":"契約期間終了"
+  "CONT_PERIOD_END":"契約期間終了",
+  "OPEN": "フォームを表示",
+  "FILTERS": "フィルター",
+  "ID":"身元",
+  "FILENAME": "ファイルネーム",
+  "PROGRESS": "進捗",
+  "PDES":"CSVプロセスステータス",
+  "ERROR": "エラー",
+  "SLNO":"連番",
+  "ROW":"行",
+  "COL":"カラム",
+  "VALUE":"値",
+  "BASICSRH":"基本検索",
+  "ADVSRH": "高度な検索"
 }

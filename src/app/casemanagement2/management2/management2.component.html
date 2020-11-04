@@ -25,9 +25,13 @@
           ><button mat-raised-button color="accent" type="button" style="margin-right: 5px;">
             <mat-icon>cloud_download</mat-icon> 
             <span fxHide.lt-md>{{ t('CSV_CREATE') }}</span>
-          </button> <button mat-raised-button color="accent" type="submit"  (click)="hideformele()">
+          </button> 
+          <button mat-raised-button color="accent" type="submit"  (click)="hideformele()" *ngIf="hideitem">
             <mat-icon>search</mat-icon>
             <span fxHide.lt-md>{{ t('SEARCH') }}</span>
+          </button>
+          <button mat-raised-button color="accent" type="submit"  (click)="showformele()" *ngIf="!hideitem">
+            <span fxHide.lt-md>{{ t('OPEN') }}</span>
           </button>
         </mat-card-header>
        
@@ -674,7 +678,7 @@
        
       </div>
       </ng-container>
-      <ng-container *transloco="let t">
+      <!-- <ng-container *transloco="let t">
         <div
           fxLayout="row wrap"
           fxLayout.xs="column"
@@ -688,8 +692,8 @@
             </button>
           </div>
         </div>
-      </ng-container>
-      <ng-container *transloco="let t">
+      </ng-container> -->
+      <!-- <ng-container *transloco="let t">
         <div
           fxLayout="row wrap"
           fxLayout.xs="column"
@@ -699,27 +703,36 @@
         >
           <div fxFlex="0 0 100%">
             <button mat-raised-button color="accent" (click)="showformele()">
-              <mat-icon>close</mat-icon> {{ t('CLOSE') }}
+           {{ t('OPEN') }}
             </button>
           </div>
         </div>
-      </ng-container>
-      <mat-card class="dataset">
-        <div class="card-icon">
+      </ng-container> -->
+      <div class="dataset" style="margin-top: 5px;">
+        <!-- <div class="card-icon">
           Case Management List
-        </div>
+        </div> -->
+       
         <ng-container *transloco="let t">
+          
           <div
             fxLayout="row wrap"
             fxLayout.xs="column"
             fxLayoutAlign="space-around center"
             style="margin-top: 10px;"
           >
-            <div fxFlex="0 0 100%" fxLayoutAlign="end center" class="margintop">
+          <div fxFlex="0 0 50%"  class="margintop">
+            <button *ngIf="hideitem" mat-raised-button color="accent" (click)="hideformele()">
+              <mat-icon>search</mat-icon> {{ t('SEARCH') }}
+            </button>
+          </div>
+          
+            <div fxFlex="0 0 50%" fxLayoutAlign="end center" class="margintop">
               <div class="onmobile">
+               
                 <span
                   >{{ t('THE_TOALNOFC') }}:
-                  <mat-chip color="primary" selected>11</mat-chip></span
+                  <mat-chip color="primary" selected>8</mat-chip></span
                 >
                 <!-- <button
                   type="button"
@@ -825,7 +838,7 @@
                   <th mat-header-cell *matHeaderCellDef style="width: 40px;" mat-sort-header="Status">
                     {{ t('CONTRACT_NAME') }}
                   </th>
-                  <td mat-cell *matCellDef="let element" style="width: 40px;">
+                  <td mat-cell *matCellDef="let element" style="width: 40px;z-index:999;z-index: 9999!important;">
                     <span *ngIf="element.BranchNumber != 3 && element.BranchNumber != 4">{{element.ContractName}}</span>
                     <div
                       class="popover__wrapper"
@@ -1458,7 +1471,7 @@
           </mat-paginator>
         </div>
         </div>
-      </mat-card>
+      </div>
     </mat-card>
   </form>
 </div>

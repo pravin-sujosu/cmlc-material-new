@@ -125,5 +125,16 @@
   "CONT_PERIOD_END":"Contract period end",
   "EXTCONSULTANT": "External consultation",
   "FIXCONTRACT": "FIXContract",
-  "LDRD": "Legal department response deadline"
+  "LDRD": "Legal department response deadline",
+  "OPEN": "Show Form",
+  "FILTERS": "Filters",
+  "ID":"ID",
+  "FILENAME": "File Name",
+  "PROGRESS": "Progress",
+  "PDES":"CSV process status",
+  "ERROR": "Errors",
+  "SLNO":"SLNO",
+  "ROW":"Row",
+  "COL":"Col",
+  "VALUE":"Value"
 }

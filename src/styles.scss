@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('~bootstrap/dist/css/bootstrap.min.css');
-html,
-body {
-  height: 100%;
-}
+// html,
+// body {
+//   height: 100%;
+// }
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -114,7 +114,7 @@ form {
   font-weight: 400;
 }
 .main.casemag > .mat-card-header .mat-card-header-text {
-  width: calc(100% - 342px);
+  width: calc(100% - 92px);
 }
 
 .gradient-warn {
@@ -297,3 +297,69 @@ div.mat-expansion-panel-body{
   margin-right: 2rem;
   margin-bottom: .5rem;
 }
+
+.sidebar .mat-expansion-panel-body {
+  padding: 0 15px 15px;
+}
+.sidebar.mat-list-item-content {
+  padding: 0 !important;
+}
+.sidebar .mat-form-field{width:100%;}
+.sidebar .mat-list-base .mat-list-item, .sidebar .mat-list-base .mat-list-option{height:inherit; margin-bottom:10px;}
+.sidebar .mat-form-field-infix{border-top:0;}
+.sidebar .mat-list-item-content {padding: 0 !important;}
+.main-content .mat-table > tbody > tr > td{padding:8px !important;}
+.main-content .mat-form-field-infix{border-top:none;}
+.mat-drawer-content { min-height: 768px;}
+
+.aside.mat-list-base .mat-list-item .mat-list-item-content{padding:0 10px 0 0;}
+.aside.mat-list-base .mat-list-item .mat-list-item-content .mat-form-field{width:100%;}
+.aside.mat-list-base .mat-list-item .mat-list-item-content .mat-form-field-infix{border-top:0;}
+.customlabel label{font-size:18px; margin:0;}
+.expand_wrapper.mat-expansion-panel:not([class*=mat-elevation-z]) 
+{box-shadow: none; border-bottom: 1px solid rgba(0, 0, 0, 0.42);}
+/*.customlabel.mat-list-item + .mat-list-item .mat-list-item-content{border-bottom: 1px solid rgba(0, 0, 0, 0.42);}*/
+.customlabel.mat-list-item + .mat-list-item .mat-list-item-content .mat-divider{border:none;}
+.customlabel.mat-list-item + .mat-list-item {height:inherit;}
+.expand_wrapper .mat-expansion-panel-header{padding-left:0;}
+.expand_wrapper .mat-expansion-panel-header label{font-size:18px;}
+.expand_wrapper .mat-expansion-panel-header label strong{font-weight: normal;}
+.expand_wrapper + p{margin:0;}
+.expand_wrapper .mat-expansion-panel-body {padding: 0;}
+.aside .mat-form-field-appearance-legacy .mat-form-field-infix{padding-top:0;}
+.sidenav-content{padding-left:10px;}
+.sidenav-content .mat-expansion-panel-header-title{font-size:18px;}
+.sidenav-content .mat-expansion-panel:not([class*=mat-elevation-z])
+{border-bottom: 1px solid rgba(0, 0, 0, 0.42); box-shadow:none; border-radius:0;}
+.sidenav-content div.mat-expansion-panel-body {color: #3c4858 !important; font-weight: normal; font-size: 16px;}
+.sidenav-content .button-row button{margin-bottom:10px;}
+.sidenav-content .mat-form-field-appearance-legacy .mat-form-field-infix{border-top:0;}
+.sidenav-content .mat-table > thead > tr > th{padding:6px 8px !important;}
+.mat-paginator{font-size:16px;}
+.sidenav-content .mat-elevation-z1{border-bottom: 1px solid rgba(0, 0, 0, 0.42); box-shadow:none; border-radius:0;}
+.sidenav-content .mat-elevation-z1 table{margin:0;}
+.margin-bot{margin-bottom:10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

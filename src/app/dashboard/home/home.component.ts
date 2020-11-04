@@ -29,11 +29,20 @@ export class HomeComponent implements OnInit {
         case 'casemgmt2':
           this.router.navigateByUrl('/case-management2');
           break;
+      case 'casemgmt3':
+        this.router.navigateByUrl('/case-management3');
+        break;
+        case 'casemgmt4':
+          this.router.navigateByUrl('/case-management4');
+          break;
       case 'contactmgmt':
         this.router.navigateByUrl('/contact-management');
         break;
       case 'postdata':
         this.router.navigateByUrl('/postdata');
+        break;
+        case 'postdatastatus':
+        this.router.navigateByUrl('/postdatastatus');
         break;
         
       default:
